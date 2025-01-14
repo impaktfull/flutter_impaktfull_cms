@@ -1,21 +1,17 @@
 name: impaktfull_cms
-description: "An easy way to create a CMS in Flutter."
-version: 0.0.1
+description: An easy way to create a CMS in Flutter.
+version: 0.0.2
 repository: https://github.com/impaktfull/flutter_impaktfull_cms
-
 environment:
   sdk: ^3.5.4
   flutter: ">=3.3.0"
-
 dependencies:
   flutter:
     sdk: flutter
   impaktfull_architecture: ^0.8.1
   impaktfull_ui: ^0.32.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-
-flutter:
+flutter: null
