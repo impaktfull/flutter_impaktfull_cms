@@ -19,6 +19,7 @@ class CmsReferenceField<T> extends CmsField<CmsReference<T>> {
     super.initialValue,
     this.items,
     this.search,
+    super.isRequired = false,
   });
 
   @override

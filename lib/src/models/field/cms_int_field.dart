@@ -12,6 +12,7 @@ class CmsIntField extends CmsField<int> {
     required int super.initialValue,
     this.min,
     this.max,
+    super.isRequired = false,
   });
 
   @override

@@ -74,6 +74,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   }
 
   Future<void> _loadData() async {
+    if (disposed) return;
     try {
       _isLoading = true;
       notifyListeners();
@@ -95,6 +96,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
         trace: trace,
       );
     }
+    if (disposed) return;
     _isLoading = false;
     notifyListeners();
   }

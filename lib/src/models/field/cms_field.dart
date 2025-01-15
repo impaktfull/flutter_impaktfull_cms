@@ -14,7 +14,7 @@ abstract class CmsField<T> {
   final String label;
   String? _error;
   final T? _initialValue;
-  final bool requiredValue;
+  final bool isRequired;
   T? _value;
 
   String? get error => _error;
@@ -27,7 +27,7 @@ abstract class CmsField<T> {
     required this.id,
     required this.label,
     T? initialValue,
-    this.requiredValue = false,
+    this.isRequired = false,
   })  : _initialValue = initialValue,
         _value = initialValue;
 

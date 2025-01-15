@@ -1,3 +1,13 @@
+# 0.12.0
+
+## Feat
+
+- Update the `requiredValue` to `isRequired`
+
+## Fix
+
+- Not mounted bugfixes
+
 # 0.11.0
 
 ## Feat

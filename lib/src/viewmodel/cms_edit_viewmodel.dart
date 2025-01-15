@@ -38,6 +38,7 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
         return;
       }
       final newItem = await cmsConfig.updateItem(id, item);
+      if (disposed) return;
       cmsNavigator.goBackWithResult(result: newItem);
     } catch (error, trace) {
       cmsNavigator.showError(

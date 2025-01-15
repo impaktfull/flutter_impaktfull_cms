@@ -12,6 +12,7 @@ class CmsBoolField extends CmsField<bool> {
     required bool super.initialValue,
     this.labelSelected,
     this.labelUnselected,
+    super.isRequired = false,
   });
 
   @override
@@ -75,9 +76,11 @@ class CmsBoolField extends CmsField<bool> {
           title: label,
           margin: EdgeInsets.zero,
         ),
-        ImpaktfullUiSwitch(
-          value: value ?? false,
-          onChanged: onChanged,
+        IgnorePointer(
+          child: ImpaktfullUiSwitch(
+            value: value ?? false,
+            onChanged: onChanged,
+          ),
         ),
       ],
     );

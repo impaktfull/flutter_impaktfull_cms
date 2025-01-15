@@ -29,7 +29,7 @@ class CmsAddViewModel<T, E> extends ChangeNotifierEx {
       final fields = _fields;
       final missingFields = <CmsField<dynamic>>[];
       for (final field in fields) {
-        if (field.requiredValue && field.value == null) {
+        if (field.isRequired && field.value == null) {
           missingFields.add(field);
         }
       }

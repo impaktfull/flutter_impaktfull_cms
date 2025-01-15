@@ -9,18 +9,28 @@ import 'package:impaktfull_cms/src/repo/cms_repo.dart';
 
 abstract class CmsConfig<T, E> {
   final CmsNavigator cmsNavigator;
-  final CmsRepository<T, E> repo;
+  final CmsRepository<T, E>? _repo;
   final int initialPage;
   final int pageSize;
   final bool defaultAddNewEnabled;
 
+  CmsRepository<T, E> get repo {
+    final repo = _repo;
+    if (repo == null) {
+      throw Exception(
+        'CmsRepository<$T, $E> is not configure\nso eighter override the repo methods or configure a repo',
+      );
+    }
+    return repo;
+  }
+
   const CmsConfig({
     required this.cmsNavigator,
-    required this.repo,
+    CmsRepository<T, E>? repo,
     this.initialPage = 0,
     this.pageSize = 25,
     this.defaultAddNewEnabled = true,
-  });
+  }) : _repo = repo;
 
   E getId(T item);
 
