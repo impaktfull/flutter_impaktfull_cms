@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:impaktfull_cms_example/data/user.dart';
 import 'package:impaktfull_cms/impaktfull_cms.dart';
+import 'package:impaktfull_cms_example/data/user_role.dart';
 import 'package:impaktfull_cms_example/repo/user_repo.dart';
 import 'package:impaktfull_ui/impaktfull_ui.dart';
 
@@ -10,7 +11,9 @@ enum _UserField {
   id,
   name,
   email,
-  phoneNumber;
+  phoneNumber,
+  active,
+  role;
 }
 
 enum _UserHeader {
@@ -75,6 +78,30 @@ class UserCmsConfig extends CmsConfig<User, int> {
           label: 'Phone Number',
           initialValue: item?.phoneNumber,
         ),
+        CmsBoolField(
+          id: _UserField.active,
+          label: 'User enabled?',
+          labelSelected: 'Enabled',
+          labelUnselected: 'Disabled',
+          initialValue: true,
+        ),
+        CmsReferenceField<UserRole>(
+          id: _UserField.role,
+          label: 'User role',
+          modalTitle: 'Select user role',
+          noDataSelected: 'No user role selected',
+          items: UserRole.values
+              .map(
+                (e) => CmsReference(value: e, title: e.name),
+              )
+              .toList(),
+          search: (search) async => UserRole.values
+              .where((e) => e.name.contains(search))
+              .map(
+                (e) => CmsReference(value: e, title: e.name),
+              )
+              .toList(),
+        ),
       ];
 
   @override
@@ -129,6 +156,9 @@ class UserCmsConfig extends CmsConfig<User, int> {
       name: fields.getStringField(_UserField.name).value ?? '',
       email: fields.getStringField(_UserField.email).value ?? '',
       phoneNumber: fields.getStringField(_UserField.phoneNumber).value ?? '',
+      active: fields.getBoolField(_UserField.active).value ?? true,
+      role:
+          fields.getReferenceField(_UserField.role).value ?? UserRole.anonymous,
     );
   }
 
@@ -137,5 +167,8 @@ class UserCmsConfig extends CmsConfig<User, int> {
         name: fields.getStringField(_UserField.name).value,
         email: fields.getStringField(_UserField.email).value,
         phoneNumber: fields.getStringField(_UserField.phoneNumber).value,
+        active: fields.getBoolField(_UserField.active).value ?? true,
+        role: fields.getReferenceField(_UserField.role).value ??
+            UserRole.anonymous,
       );
 }

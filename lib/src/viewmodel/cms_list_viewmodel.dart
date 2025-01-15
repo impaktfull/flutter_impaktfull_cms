@@ -82,7 +82,11 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
       _items.clear();
       _items.addAll(pagingInfo.items);
     } catch (error, trace) {
-      _cmsNavigator.showError(error: error, trace: trace);
+      _cmsNavigator.showError(
+        message: 'Error loading items ${T.toString()}',
+        error: error,
+        trace: trace,
+      );
     }
     _isLoading = false;
     notifyListeners();

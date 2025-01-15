@@ -40,7 +40,11 @@ class CmsDetailsViewModel<T, E> extends ChangeNotifierEx {
       await _cmsConfig.deleteItem(_item);
       _cmsNavigator.goBack();
     } catch (error, trace) {
-      _cmsNavigator.showError(error: error, trace: trace);
+      _cmsNavigator.showError(
+        message: 'Error deleting item ${T.toString()}',
+        error: error,
+        trace: trace,
+      );
     }
   }
 }

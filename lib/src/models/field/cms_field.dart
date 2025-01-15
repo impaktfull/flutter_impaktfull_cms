@@ -1,8 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:impaktfull_architecture/impaktfull_architecture.dart';
 
-export 'cms_string_field.dart';
+export 'cms_bool_field.dart';
 export 'cms_int_field.dart';
+export 'cms_string_field.dart';
+export 'cms_reference_field.dart';
 
 abstract class CmsField<T> {
   final _listeners = <CmsFieldListener>{};
@@ -75,6 +77,8 @@ extension CmsFieldExtension on List<CmsField<dynamic>> {
   CmsField<double> getDoubleField(Enum id) => getField<double>(id);
 
   CmsField<bool> getBoolField(Enum id) => getField<bool>(id);
+
+  CmsField<T> getReferenceField<T>(Enum id) => getField<T>(id);
 
   CmsField<DateTime> getDateTimeField(Enum id) => getField<DateTime>(id);
 

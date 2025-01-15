@@ -31,7 +31,11 @@ class CmsAddViewModel<T, E> extends ChangeNotifierEx {
       final newUser = await _cmsConfig.saveItem(item);
       _cmsNavigator.goBackWithResult(result: newUser);
     } catch (error, trace) {
-      _cmsNavigator.showError(error: error, trace: trace);
+      _cmsNavigator.showError(
+        message: 'Error saving item ${T.toString()}',
+        error: error,
+        trace: trace,
+      );
     }
   }
 }

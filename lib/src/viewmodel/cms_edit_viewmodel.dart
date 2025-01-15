@@ -37,7 +37,11 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
       final newItem = await _cmsConfig.updateItem(id, item);
       _cmsNavigator.goBackWithResult(result: newItem);
     } catch (error, trace) {
-      _cmsNavigator.showError(error: error, trace: trace);
+      _cmsNavigator.showError(
+        message: 'Error updating item ${T.toString()}',
+        error: error,
+        trace: trace,
+      );
     }
   }
 }

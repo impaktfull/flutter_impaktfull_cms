@@ -19,9 +19,6 @@ class MainCmsNavigator extends CmsNavigator {
   void goBackWithResult<T>({required T result}) => navigator.pop(result);
 
   @override
-  void goToCmsDetail<T, E>(CmsConfig<T, E> config, T item) {}
-
-  @override
   Future<T?> showAdd<T, E>(CmsConfig<T, E> config) => showDialog<T>(
         context: context,
         builder: (context) => ImpaktfullUiModal(
@@ -109,7 +106,11 @@ class MainCmsNavigator extends CmsNavigator {
   }
 
   @override
-  void showError({required Object error, required StackTrace trace}) {
+  void showError({
+    required String message,
+    required Object error,
+    required StackTrace trace,
+  }) {
     debugPrint(error.toString());
     debugPrint(trace.toString());
     ScaffoldMessenger.of(context).showSnackBar(

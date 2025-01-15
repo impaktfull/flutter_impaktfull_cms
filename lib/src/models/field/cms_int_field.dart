@@ -17,7 +17,7 @@ class CmsIntField extends CmsField<int> {
   @override
   Widget buildCreateOrUpdate(BuildContext context) => ImpaktfullUiNumberInput(
         label: label,
-        value: value ?? initialValue!,
+        value: value!,
         min: min,
         max: max,
         onChanged: onChanged,
