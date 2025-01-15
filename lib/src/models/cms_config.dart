@@ -5,15 +5,18 @@ import 'package:impaktfull_cms/src/models/data/paging_info.dart';
 import 'package:impaktfull_cms/src/models/field/cms_field.dart';
 import 'package:impaktfull_cms/src/models/header/cms_header.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
+import 'package:impaktfull_cms/src/repo/cms_repo.dart';
 
 abstract class CmsConfig<T, E> {
   final CmsNavigator cmsNavigator;
+  final CmsRepo<T, E> repo;
   final int initialPage;
   final int pageSize;
   final bool defaultAddNewEnabled;
 
   const CmsConfig({
     required this.cmsNavigator,
+    required this.repo,
     this.initialPage = 0,
     this.pageSize = 25,
     this.defaultAddNewEnabled = true,
@@ -37,21 +40,21 @@ abstract class CmsConfig<T, E> {
 
   Future<T?> showDetails(T item) => cmsNavigator.showDetails(this, item);
 
-  Future<bool?> showDeleteConfirmation(T item) =>
-      cmsNavigator.showDeleteConfirmation(this, item);
+  Future<bool?> showDeleteConfirmation(T item) => cmsNavigator.showDeleteConfirmation(this, item);
 
   Future<PagingInfo<T>> loadItems({
     required int page,
     required int pageSize,
-  });
+  }) =>
+      repo.loadAll(page: page, pageSize: pageSize);
 
-  Future<T> loadItem(E id);
+  Future<T> loadItem(E id) => repo.load(id);
 
-  Future<void> deleteItem(T item);
+  Future<void> deleteItem(T item) => repo.delete(item);
 
-  Future<T> saveItem(T item);
+  Future<T> saveItem(T item) => repo.save(item);
 
-  Future<T> updateItem(E id, T item);
+  Future<T> updateItem(E id, T item) => repo.update(id, item);
 
   FutureOr<bool> isAddNewEnabled() async => defaultAddNewEnabled;
 

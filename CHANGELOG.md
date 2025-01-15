@@ -1,3 +1,9 @@
+# 0.8.0
+
+## Feat
+
+- BREAKING: Added `CmsRepo` to `CmsConfig`
+
 # 0.7.0
 
 ## Feat

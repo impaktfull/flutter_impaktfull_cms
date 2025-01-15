@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:impaktfull_cms_example/data/user.dart';
 import 'package:impaktfull_cms/impaktfull_cms.dart';
 import 'package:impaktfull_cms_example/data/user_role.dart';
-import 'package:impaktfull_cms_example/repo/user_repo.dart';
 import 'package:impaktfull_ui/impaktfull_ui.dart';
 
 enum _UserField {
@@ -25,6 +24,7 @@ enum _UserHeader {
 class UserCmsConfig extends CmsConfig<User, int> {
   UserCmsConfig({
     required super.cmsNavigator,
+    required super.repo,
   });
 
   @override
@@ -108,29 +108,6 @@ class UserCmsConfig extends CmsConfig<User, int> {
   FutureOr<bool> isAddNewEnabled() => true;
 
   @override
-  Future<PagingInfo<User>> loadItems({
-    required int page,
-    required int pageSize,
-  }) async =>
-      UserRepo.instance.getUsers(
-        page: page,
-        pageSize: pageSize,
-      );
-
-  @override
-  Future<User> loadItem(int id) async => UserRepo.instance.getUser(id);
-
-  @override
-  Future<void> deleteItem(User item) async => UserRepo.instance.delete(item);
-
-  @override
-  Future<User> saveItem(User item) async => UserRepo.instance.save(item);
-
-  @override
-  Future<User> updateItem(int id, User item) async =>
-      UserRepo.instance.update(item);
-
-  @override
   Widget buildRow({
     required User item,
     void Function()? onOpenTapped,
@@ -157,8 +134,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
       email: fields.getStringField(_UserField.email).value ?? '',
       phoneNumber: fields.getStringField(_UserField.phoneNumber).value ?? '',
       active: fields.getBoolField(_UserField.active).value ?? true,
-      role:
-          fields.getReferenceField(_UserField.role).value ?? UserRole.anonymous,
+      role: fields.getReferenceField(_UserField.role).value ?? UserRole.anonymous,
     );
   }
 
@@ -168,7 +144,6 @@ class UserCmsConfig extends CmsConfig<User, int> {
         email: fields.getStringField(_UserField.email).value,
         phoneNumber: fields.getStringField(_UserField.phoneNumber).value,
         active: fields.getBoolField(_UserField.active).value ?? true,
-        role: fields.getReferenceField(_UserField.role).value ??
-            UserRole.anonymous,
+        role: fields.getReferenceField(_UserField.role).value ?? UserRole.anonymous,
       );
 }
