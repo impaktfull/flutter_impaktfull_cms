@@ -1,3 +1,9 @@
+# 0.5.0
+
+## Feat
+
+- Make it possible to use a custom viewmodel for `CmsAddScreen`, `CmsDetailsScreen`, `CmsEditScreen` and `CmsListScreen`
+
 # 0.4.0
 
 ## Feat

@@ -4,11 +4,12 @@ import 'package:impaktfull_cms/impaktfull_cms.dart';
 import 'package:impaktfull_cms/src/viewmodel/cms_details_viewmodel.dart';
 
 class CmsDetailsScreen<T, E> extends StatelessWidget {
-  final CmsNavigator cmsNavigator;
-  final CmsConfig<T, E> config;
+  final CmsNavigator? cmsNavigator;
+  final CmsConfig<T, E>? config;
   final T item;
   final Widget Function(
       BuildContext context, CmsDetailsViewModel<T, E> viewModel)? builder;
+  final CmsDetailsViewModel<T, E>? viewModel;
 
   const CmsDetailsScreen({
     required this.cmsNavigator,
@@ -16,13 +17,23 @@ class CmsDetailsScreen<T, E> extends StatelessWidget {
     required this.item,
     this.builder,
     super.key,
-  });
+  }) : viewModel = null;
+
+  const CmsDetailsScreen.value({
+    required CmsDetailsViewModel<T, E> this.viewModel,
+    required this.item,
+    this.builder,
+    super.key,
+  })  : cmsNavigator = null,
+        config = null;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CmsDetailsViewModel<T, E>>(
-      create: (context) =>
-          CmsDetailsViewModel(cmsNavigator)..initCms(config, item),
+      create: (context) {
+        if (viewModel != null) return viewModel!;
+        return CmsDetailsViewModel(cmsNavigator!)..initCms(config!, item);
+      },
       child: Consumer<CmsDetailsViewModel<T, E>>(
         builder: (context, viewModel, child) {
           if (builder != null) {

@@ -3,24 +3,35 @@ import 'package:impaktfull_architecture/impaktfull_architecture.dart';
 import 'package:impaktfull_cms/impaktfull_cms.dart';
 
 class CmsListScreen<T, E> extends StatelessWidget {
-  final CmsNavigator cmsNavigator;
-  final CmsConfig<T, E> config;
+  final CmsNavigator? cmsNavigator;
+  final CmsConfig<T, E>? config;
   final Widget Function(
     BuildContext context,
     CmsListViewModel<T, E> viewModel,
   )? builder;
+  final CmsListViewModel<T, E>? viewModel;
 
   const CmsListScreen({
-    required this.cmsNavigator,
-    required this.config,
+    required CmsNavigator this.cmsNavigator,
+    required CmsConfig<T, E> this.config,
     this.builder,
     super.key,
-  });
+  }) : viewModel = null;
+
+  const CmsListScreen.value({
+    required CmsListViewModel<T, E> this.viewModel,
+    this.builder,
+    super.key,
+  })  : cmsNavigator = null,
+        config = null;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CmsListViewModel<T, E>>(
-      create: (context) => CmsListViewModel(cmsNavigator)..initCms(config),
+      create: (context) {
+        if (viewModel != null) return viewModel!;
+        return CmsListViewModel(cmsNavigator!)..initCms(config!);
+      },
       child: Consumer<CmsListViewModel<T, E>>(
         builder: (context, viewModel, child) {
           if (builder != null) {
