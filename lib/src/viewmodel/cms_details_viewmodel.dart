@@ -4,7 +4,7 @@ import 'package:impaktfull_cms/src/models/field/cms_field.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 
 class CmsDetailsViewModel<T, E> extends ChangeNotifierEx {
-  final CmsNavigator _cmsNavigator;
+  final CmsNavigator cmsNavigator;
 
   late final CmsConfig<T, E> _cmsConfig;
 
@@ -15,7 +15,7 @@ class CmsDetailsViewModel<T, E> extends ChangeNotifierEx {
   List<CmsField<dynamic>> get fields => _fields;
 
   CmsDetailsViewModel(
-    this._cmsNavigator,
+    this.cmsNavigator,
   );
 
   Future<void> initCms(CmsConfig<T, E> cmsConfig, T item) async {
@@ -32,15 +32,15 @@ class CmsDetailsViewModel<T, E> extends ChangeNotifierEx {
       if (!isDeletable) {
         return;
       }
-      final shouldBeDeleted = await _cmsNavigator.showDeleteConfirmation(
+      final shouldBeDeleted = await cmsNavigator.showDeleteConfirmation(
         _cmsConfig,
         _item,
       );
       if (shouldBeDeleted != true) return;
       await _cmsConfig.deleteItem(_item);
-      _cmsNavigator.goBack();
+      cmsNavigator.goBack();
     } catch (error, trace) {
-      _cmsNavigator.showError(
+      cmsNavigator.showError(
         message: 'Error deleting item ${T.toString()}',
         error: error,
         trace: trace,

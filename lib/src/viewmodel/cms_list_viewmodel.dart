@@ -5,7 +5,7 @@ import 'package:impaktfull_cms/src/models/header/cms_header.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 
 class CmsListViewModel<T, E> extends ChangeNotifierEx {
-  final CmsNavigator _cmsNavigator;
+  final CmsNavigator cmsNavigator;
 
   late final CmsConfig<T, E> _cmsConfig;
 
@@ -48,7 +48,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   int get totalItems => _totalPages * pageSize;
 
   CmsListViewModel(
-    this._cmsNavigator,
+    this.cmsNavigator,
   );
 
   Future<void> initCms(CmsConfig<T, E> cmsConfig) async {
@@ -83,7 +83,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
       _items.clear();
       _items.addAll(pagingInfo.items);
     } catch (error, trace) {
-      _cmsNavigator.showError(
+      cmsNavigator.showError(
         message: 'Error loading items ${T.toString()}',
         error: error,
         trace: trace,

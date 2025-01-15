@@ -4,7 +4,7 @@ import 'package:impaktfull_cms/src/models/field/cms_field.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 
 class CmsEditViewModel<T, E> extends ChangeNotifierEx {
-  final CmsNavigator _cmsNavigator;
+  final CmsNavigator cmsNavigator;
 
   late final CmsConfig<T, E> _cmsConfig;
 
@@ -15,7 +15,7 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
   List<CmsField<dynamic>> get fields => _fields;
 
   CmsEditViewModel(
-    this._cmsNavigator,
+    this.cmsNavigator,
   );
 
   Future<void> initCms(CmsConfig<T, E> cmsConfig, T item) async {
@@ -35,9 +35,9 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
         return;
       }
       final newItem = await _cmsConfig.updateItem(id, item);
-      _cmsNavigator.goBackWithResult(result: newItem);
+      cmsNavigator.goBackWithResult(result: newItem);
     } catch (error, trace) {
-      _cmsNavigator.showError(
+      cmsNavigator.showError(
         message: 'Error updating item ${T.toString()}',
         error: error,
         trace: trace,

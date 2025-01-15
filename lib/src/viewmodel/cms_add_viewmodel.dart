@@ -4,7 +4,7 @@ import 'package:impaktfull_cms/src/models/field/cms_field.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 
 class CmsAddViewModel<T, E> extends ChangeNotifierEx {
-  final CmsNavigator _cmsNavigator;
+  final CmsNavigator cmsNavigator;
 
   late final CmsConfig<T, E> _cmsConfig;
 
@@ -13,7 +13,7 @@ class CmsAddViewModel<T, E> extends ChangeNotifierEx {
   List<CmsField<dynamic>> get fields => _fields;
 
   CmsAddViewModel(
-    this._cmsNavigator,
+    this.cmsNavigator,
   );
 
   Future<void> initCms(CmsConfig<T, E> cmsConfig) async {
@@ -29,9 +29,9 @@ class CmsAddViewModel<T, E> extends ChangeNotifierEx {
         return;
       }
       final newUser = await _cmsConfig.saveItem(item);
-      _cmsNavigator.goBackWithResult(result: newUser);
+      cmsNavigator.goBackWithResult(result: newUser);
     } catch (error, trace) {
-      _cmsNavigator.showError(
+      cmsNavigator.showError(
         message: 'Error saving item ${T.toString()}',
         error: error,
         trace: trace,

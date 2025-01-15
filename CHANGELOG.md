@@ -1,3 +1,9 @@
+# 0.3.0
+
+## Feat
+
+- Exposed the `CmsNavigator` in `CmsAddViewModel`, `CmsDetailsViewModel`, `CmsEditViewModel` and `CmsListViewModel`
+
 # 0.2.0
 
 ## Feat
