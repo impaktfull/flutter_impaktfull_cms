@@ -16,7 +16,7 @@ class CmsAddViewModel<T, E> extends ChangeNotifierEx {
     this._cmsNavigator,
   );
 
-  Future<void> init(CmsConfig<T, E> cmsConfig) async {
+  Future<void> initCms(CmsConfig<T, E> cmsConfig) async {
     _cmsConfig = cmsConfig;
     _fields = _cmsConfig.getFields();
   }

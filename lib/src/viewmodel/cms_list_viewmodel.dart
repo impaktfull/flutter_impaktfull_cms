@@ -50,7 +50,8 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   CmsListViewModel(
     this._cmsNavigator,
   );
-  Future<void> init(CmsConfig<T, E> cmsConfig) async {
+
+  Future<void> initCms(CmsConfig<T, E> cmsConfig) async {
     _cmsConfig = cmsConfig;
     _loadData();
   }

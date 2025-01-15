@@ -18,7 +18,7 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
     this._cmsNavigator,
   );
 
-  Future<void> init(CmsConfig<T, E> cmsConfig, T item) async {
+  Future<void> initCms(CmsConfig<T, E> cmsConfig, T item) async {
     _cmsConfig = cmsConfig;
     _item = item;
     _fields = _cmsConfig.getFields(

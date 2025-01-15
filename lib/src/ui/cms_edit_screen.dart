@@ -22,7 +22,8 @@ class CmsEditScreen<T, E> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CmsEditViewModel<T, E>>(
-      create: (context) => CmsEditViewModel(cmsNavigator)..init(config, item),
+      create: (context) =>
+          CmsEditViewModel(cmsNavigator)..initCms(config, item),
       child: Consumer<CmsEditViewModel<T, E>>(
         builder: (context, viewModel, child) {
           if (builder != null) {

@@ -22,7 +22,7 @@ class CmsDetailsScreen<T, E> extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CmsDetailsViewModel<T, E>>(
       create: (context) =>
-          CmsDetailsViewModel(cmsNavigator)..init(config, item),
+          CmsDetailsViewModel(cmsNavigator)..initCms(config, item),
       child: Consumer<CmsDetailsViewModel<T, E>>(
         builder: (context, viewModel, child) {
           if (builder != null) {

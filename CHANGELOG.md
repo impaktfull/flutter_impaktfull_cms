@@ -1,3 +1,9 @@
+# 0.2.0
+
+## Feat
+
+- BREAKING: Change `init` to `initCms` in `CmsAddViewModel`, `CmsDetailsViewModel`, `CmsEditViewModel` and `CmsListViewModel`
+
 # 0.1.0
 
 ## Feat
