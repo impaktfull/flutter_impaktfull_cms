@@ -7,7 +7,7 @@ class CmsReferenceField<T> extends CmsField<CmsReference<T>> {
   final String modalTitle;
   final String noDataSelected;
   final String? modalNoDataLabel;
-  final List<CmsReference<T>>? items;
+  final Future<List<CmsReference<T>>> Function()? items;
   final Future<List<CmsReference<T>>> Function(String)? search;
 
   CmsReferenceField({
@@ -22,8 +22,7 @@ class CmsReferenceField<T> extends CmsField<CmsReference<T>> {
   });
 
   @override
-  Widget buildCreateOrUpdate(BuildContext context) =>
-      ImpaktfullUiAutoLayout.vertical(
+  Widget buildCreateOrUpdate(BuildContext context) => ImpaktfullUiAutoLayout.vertical(
         spacing: 4,
         children: [
           ImpaktfullUiSectionTitle(
@@ -52,8 +51,7 @@ class CmsReferenceField<T> extends CmsField<CmsReference<T>> {
         ),
         SelectableText(
           value?.title ?? '',
-          style:
-              ImpaktfullUiTheme.of(context).textStyles.onCard.text.small.light,
+          style: ImpaktfullUiTheme.of(context).textStyles.onCard.text.small.light,
         ),
       ],
     );

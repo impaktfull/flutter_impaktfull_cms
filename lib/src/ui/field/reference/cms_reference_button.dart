@@ -8,7 +8,7 @@ class CmsReferenceButton<T> extends StatelessWidget {
   final String noDataSelected;
   final String? modalNoDataLabel;
   final CmsReference<T>? reference;
-  final List<CmsReference<T>>? items;
+  final Future<List<CmsReference<T>>> Function()? items;
   final Future<List<CmsReference<T>>> Function(String)? search;
   final void Function(CmsReference<T>) onChanged;
 

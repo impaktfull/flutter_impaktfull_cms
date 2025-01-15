@@ -1,3 +1,9 @@
+# 0.7.0
+
+## Feat
+
+- BREAKING: Added better item loading for `CmsReferenceField`
+
 # 0.6.0
 
 ## Feat

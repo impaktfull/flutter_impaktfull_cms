@@ -6,7 +6,7 @@ class CmsReferenceModal<T> extends StatefulWidget {
   final String title;
   final String? noDataLabel;
   final CmsReference<T>? reference;
-  final List<CmsReference<T>>? items;
+  final Future<List<CmsReference<T>>> Function()? items;
   final Future<List<CmsReference<T>>> Function(String)? search;
 
   const CmsReferenceModal({
@@ -31,11 +31,7 @@ class _CmsReferenceModalState<T> extends State<CmsReferenceModal<T>> {
   @override
   void initState() {
     super.initState();
-    final items = widget.items;
-    if (items != null) {
-      _items.clear();
-      _items.addAll(items);
-    }
+    _getData();
   }
 
   @override
@@ -90,8 +86,7 @@ class _CmsReferenceModalState<T> extends State<CmsReferenceModal<T>> {
     );
   }
 
-  void _onItemSelected(CmsReference<T> item) =>
-      Navigator.of(this.context).pop(item);
+  void _onItemSelected(CmsReference<T> item) => Navigator.of(this.context).pop(item);
 
   Future<void> _onSearchChanged(String value) async {
     setState(() {
@@ -106,5 +101,21 @@ class _CmsReferenceModalState<T> extends State<CmsReferenceModal<T>> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  Future<void> _getData() async {
+    final callBack = widget.items;
+    if (callBack == null) return;
+    try {
+      setState(() => _isLoading = true);
+      final items = await callBack();
+      _items.clear();
+      _items.addAll(items);
+    } catch (error, trace) {
+      debugPrint(error.toString());
+      debugPrint(trace.toString());
+    }
+    if (!mounted) return;
+    setState(() => _isLoading = false);
   }
 }
