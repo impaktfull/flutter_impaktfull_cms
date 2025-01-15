@@ -9,7 +9,7 @@ import 'package:impaktfull_cms/src/repo/cms_repo.dart';
 
 abstract class CmsConfig<T, E> {
   final CmsNavigator cmsNavigator;
-  final CmsRepo<T, E> repo;
+  final CmsRepository<T, E> repo;
   final int initialPage;
   final int pageSize;
   final bool defaultAddNewEnabled;

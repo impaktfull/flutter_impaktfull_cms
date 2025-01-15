@@ -31,11 +31,19 @@ class UserRepo {
   Future<PagingInfo<User>> getUsers({
     int page = 0,
     int pageSize = 10,
+    String? searchQuery,
   }) async {
     await _performNetworkDelay();
     final start = page * pageSize;
     final end = start + pageSize;
-    final allUsers = _users;
+    var allUsers = _users;
+    if (searchQuery != null && searchQuery.isNotEmpty) {
+      allUsers = _users
+          .where(
+            (user) => user.name.contains(searchQuery),
+          )
+          .toList();
+    }
     final users =
         _users.sublist(start, end > _users.length ? _users.length : end);
     return PagingInfo(

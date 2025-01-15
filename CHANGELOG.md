@@ -1,3 +1,10 @@
+# 0.9.0
+
+## Feat
+
+- BREAKING: Renamed `CmsRepo` to `CmsRepository`
+- Added `searchQuery` to `CmsRepository`
+
 # 0.8.0
 
 ## Feat
