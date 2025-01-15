@@ -117,4 +117,12 @@ class MainCmsNavigator extends CmsNavigator {
       SnackBar(content: Text(error.toString())),
     );
   }
+
+  @override
+  void showMissingFieldsError(List<CmsField> missingFields) {
+    final keys = missingFields.map((e) => e.label).join(', ');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Please fill in all required fields\b$keys')),
+    );
+  }
 }

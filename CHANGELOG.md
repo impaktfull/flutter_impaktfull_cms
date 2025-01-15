@@ -1,3 +1,9 @@
+# 0.11.0
+
+## Feat
+
+- Added support for required fields
+
 # 0.10.0
 
 ## Feat

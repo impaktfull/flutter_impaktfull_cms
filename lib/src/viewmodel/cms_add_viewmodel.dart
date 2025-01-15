@@ -26,7 +26,18 @@ class CmsAddViewModel<T, E> extends ChangeNotifierEx {
 
   Future<void> onSaveTapped() async {
     try {
-      final item = cmsConfig.createNewItem(_fields);
+      final fields = _fields;
+      final missingFields = <CmsField<dynamic>>[];
+      for (final field in fields) {
+        if (field.requiredValue && field.value == null) {
+          missingFields.add(field);
+        }
+      }
+      if (missingFields.isNotEmpty) {
+        cmsNavigator.showMissingFieldsError(missingFields);
+        return;
+      }
+      final item = cmsConfig.createNewItem(fields);
       final isSaveable = await cmsConfig.isSaveable(item);
       if (!isSaveable) {
         return;

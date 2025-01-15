@@ -15,6 +15,10 @@ abstract class CmsNavigator {
     required StackTrace trace,
   });
 
+  void showMissingFieldsError(
+    List<CmsField<dynamic>> missingFields,
+  );
+
   void goBack();
 
   void goBackWithResult<T>({
