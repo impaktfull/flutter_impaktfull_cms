@@ -1,12 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:impaktfull_architecture/impaktfull_architecture.dart';
 import 'package:impaktfull_cms/src/models/cms_config.dart';
 import 'package:impaktfull_cms/src/models/field/cms_field.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 
 class CmsEditViewModel<T, E> extends ChangeNotifierEx {
+  @protected
   final CmsNavigator cmsNavigator;
 
-  late final CmsConfig<T, E> _cmsConfig;
+  @protected
+  late final CmsConfig<T, E> cmsConfig;
 
   late final List<CmsField<dynamic>> _fields;
 
@@ -19,22 +22,22 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
   );
 
   Future<void> initCms(CmsConfig<T, E> cmsConfig, T item) async {
-    _cmsConfig = cmsConfig;
+    this.cmsConfig = cmsConfig;
     _item = item;
-    _fields = _cmsConfig.getFields(
+    _fields = cmsConfig.getFields(
       item: item,
     );
   }
 
   Future<void> onSaveTapped() async {
     try {
-      final id = _cmsConfig.getId(_item);
-      final item = _cmsConfig.updateOldItem(_item, _fields);
-      final isSaveable = await _cmsConfig.isSaveable(item);
+      final id = cmsConfig.getId(_item);
+      final item = cmsConfig.updateOldItem(_item, _fields);
+      final isSaveable = await cmsConfig.isSaveable(item);
       if (!isSaveable) {
         return;
       }
-      final newItem = await _cmsConfig.updateItem(id, item);
+      final newItem = await cmsConfig.updateItem(id, item);
       cmsNavigator.goBackWithResult(result: newItem);
     } catch (error, trace) {
       cmsNavigator.showError(

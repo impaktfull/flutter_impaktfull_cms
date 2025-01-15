@@ -5,9 +5,11 @@ import 'package:impaktfull_cms/src/models/header/cms_header.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 
 class CmsListViewModel<T, E> extends ChangeNotifierEx {
+  @protected
   final CmsNavigator cmsNavigator;
 
-  late final CmsConfig<T, E> _cmsConfig;
+  @protected
+  late final CmsConfig<T, E> cmsConfig;
 
   final _items = <T>[];
   var _title = '';
@@ -31,7 +33,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
     if (_items.isEmpty) return [];
     return _items
         .map(
-          (item) => _cmsConfig.buildRow(
+          (item) => cmsConfig.buildRow(
             item: item,
             onOpenTapped: () => onOpenTapped(item),
             onEditTapped: () => onEditTapped(item),
@@ -43,7 +45,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
 
   int get page => _page;
 
-  int get pageSize => _cmsConfig.pageSize;
+  int get pageSize => cmsConfig.pageSize;
 
   int get totalItems => _totalPages * pageSize;
 
@@ -52,7 +54,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   );
 
   Future<void> initCms(CmsConfig<T, E> cmsConfig) async {
-    _cmsConfig = cmsConfig;
+    this.cmsConfig = cmsConfig;
     _loadData();
   }
 
@@ -72,12 +74,12 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
     try {
       _isLoading = true;
       notifyListeners();
-      _title = _cmsConfig.getTitle();
-      _headers = _cmsConfig.getHeaders();
-      _isAddNewEnabled = await _cmsConfig.isAddNewEnabled();
-      final pagingInfo = await _cmsConfig.loadItems(
+      _title = cmsConfig.getTitle();
+      _headers = cmsConfig.getHeaders();
+      _isAddNewEnabled = await cmsConfig.isAddNewEnabled();
+      final pagingInfo = await cmsConfig.loadItems(
         page: _page,
-        pageSize: _cmsConfig.pageSize,
+        pageSize: cmsConfig.pageSize,
       );
       _totalPages = pagingInfo.totalPage;
       _items.clear();
@@ -94,32 +96,32 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   }
 
   Future<void> onAddTapped() async {
-    final showAddButton = await _cmsConfig.isAddNewEnabled();
+    final showAddButton = await cmsConfig.isAddNewEnabled();
     if (!showAddButton) return;
-    final result = await _cmsConfig.showAdd();
+    final result = await cmsConfig.showAdd();
     if (result == null) return;
     onLoadPage(0);
   }
 
   Future<void> onOpenTapped(T item) async {
-    await _cmsConfig.showDetails(item);
+    await cmsConfig.showDetails(item);
     onLoadPage(0);
   }
 
   Future<void> onEditTapped(T item) async {
-    final isEditable = await _cmsConfig.isEditable(item);
+    final isEditable = await cmsConfig.isEditable(item);
     if (!isEditable) return;
-    final result = await _cmsConfig.showEdit(item);
+    final result = await cmsConfig.showEdit(item);
     if (result == null) return;
     onLoadPage(0);
   }
 
   Future<void> onDeleteTapped(T item) async {
-    final isDeletable = await _cmsConfig.isDeletable(item);
+    final isDeletable = await cmsConfig.isDeletable(item);
     if (!isDeletable) return;
-    final result = await _cmsConfig.showDeleteConfirmation(item);
+    final result = await cmsConfig.showDeleteConfirmation(item);
     if (result != true) return;
-    await _cmsConfig.deleteItem(item);
+    await cmsConfig.deleteItem(item);
     onLoadPage(0);
   }
 

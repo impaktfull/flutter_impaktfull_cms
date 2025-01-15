@@ -1,3 +1,9 @@
+# 0.4.0
+
+## Feat
+
+- Expose the `CmsConfig` in `CmsAddViewModel`, `CmsDetailsViewModel`, `CmsEditViewModel` and `CmsListViewModel`
+
 # 0.3.0
 
 ## Feat

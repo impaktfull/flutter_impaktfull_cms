@@ -1,12 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:impaktfull_architecture/impaktfull_architecture.dart';
 import 'package:impaktfull_cms/src/models/cms_config.dart';
 import 'package:impaktfull_cms/src/models/field/cms_field.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 
 class CmsAddViewModel<T, E> extends ChangeNotifierEx {
+  @protected
   final CmsNavigator cmsNavigator;
 
-  late final CmsConfig<T, E> _cmsConfig;
+  @protected
+  late final CmsConfig<T, E> cmsConfig;
 
   late final List<CmsField<dynamic>> _fields;
 
@@ -17,18 +20,18 @@ class CmsAddViewModel<T, E> extends ChangeNotifierEx {
   );
 
   Future<void> initCms(CmsConfig<T, E> cmsConfig) async {
-    _cmsConfig = cmsConfig;
-    _fields = _cmsConfig.getFields();
+    this.cmsConfig = cmsConfig;
+    _fields = cmsConfig.getFields();
   }
 
   Future<void> onSaveTapped() async {
     try {
-      final item = _cmsConfig.createNewItem(_fields);
-      final isSaveable = await _cmsConfig.isSaveable(item);
+      final item = cmsConfig.createNewItem(_fields);
+      final isSaveable = await cmsConfig.isSaveable(item);
       if (!isSaveable) {
         return;
       }
-      final newUser = await _cmsConfig.saveItem(item);
+      final newUser = await cmsConfig.saveItem(item);
       cmsNavigator.goBackWithResult(result: newUser);
     } catch (error, trace) {
       cmsNavigator.showError(
