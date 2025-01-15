@@ -40,7 +40,8 @@ abstract class CmsConfig<T, E> {
 
   Future<T?> showDetails(T item) => cmsNavigator.showDetails(this, item);
 
-  Future<bool?> showDeleteConfirmation(T item) => cmsNavigator.showDeleteConfirmation(this, item);
+  Future<bool?> showDeleteConfirmation(T item) =>
+      cmsNavigator.showDeleteConfirmation(this, item);
 
   Future<PagingInfo<T>> loadItems({
     required int page,

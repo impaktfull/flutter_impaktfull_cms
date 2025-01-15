@@ -1,6 +1,6 @@
 import 'package:impaktfull_cms/impaktfull_cms.dart';
 
-/// 
+///
 abstract class CmsRepo<T, E> {
   Future<T> save(T item);
 

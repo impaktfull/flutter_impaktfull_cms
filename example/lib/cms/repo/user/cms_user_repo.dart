@@ -23,5 +23,6 @@ class CmsUserRepo extends CmsRepo<User, int> {
   Future<User> save(User item) async => UserRepo.instance.save(item);
 
   @override
-  Future<User> update(int id, User item) async => UserRepo.instance.update(item);
+  Future<User> update(int id, User item) async =>
+      UserRepo.instance.update(item);
 }
