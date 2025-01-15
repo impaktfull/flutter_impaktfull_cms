@@ -1,3 +1,9 @@
+# 0.10.0
+
+## Feat
+
+- BREAKING: Changed the get...Field to get... and instantly return the value
+
 # 0.9.0
 
 ## Feat

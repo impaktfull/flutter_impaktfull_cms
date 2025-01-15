@@ -130,22 +130,20 @@ class UserCmsConfig extends CmsConfig<User, int> {
   User createNewItem(List<CmsField> fields) {
     return User(
       id: 0,
-      name: fields.getStringField(_UserField.name).value ?? '',
-      email: fields.getStringField(_UserField.email).value ?? '',
-      phoneNumber: fields.getStringField(_UserField.phoneNumber).value ?? '',
-      active: fields.getBoolField(_UserField.active).value ?? true,
-      role:
-          fields.getReferenceField(_UserField.role).value ?? UserRole.anonymous,
+      name: fields.getString(_UserField.name) ?? '',
+      email: fields.getString(_UserField.email) ?? '',
+      phoneNumber: fields.getString(_UserField.phoneNumber) ?? '',
+      active: fields.getBool(_UserField.active) ?? true,
+      role: fields.getReference(_UserField.role) ?? UserRole.anonymous,
     );
   }
 
   @override
   User updateOldItem(User item, List<CmsField> fields) => item.copyWith(
-        name: fields.getStringField(_UserField.name).value,
-        email: fields.getStringField(_UserField.email).value,
-        phoneNumber: fields.getStringField(_UserField.phoneNumber).value,
-        active: fields.getBoolField(_UserField.active).value ?? true,
-        role: fields.getReferenceField(_UserField.role).value ??
-            UserRole.anonymous,
+        name: fields.getString(_UserField.name),
+        email: fields.getString(_UserField.email),
+        phoneNumber: fields.getString(_UserField.phoneNumber),
+        active: fields.getBool(_UserField.active) ?? true,
+        role: fields.getReference(_UserField.role) ?? UserRole.anonymous,
       );
 }

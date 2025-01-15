@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:impaktfull_architecture/impaktfull_architecture.dart';
+import 'package:impaktfull_cms/src/models/data/cms_reference.dart';
 
 export 'cms_bool_field.dart';
 export 'cms_int_field.dart';
@@ -70,17 +71,20 @@ extension CmsFieldExtension on List<CmsField<dynamic>> {
     return result as CmsField<T>;
   }
 
-  CmsField<String> getStringField(Enum id) => getField<String>(id);
+  String? getString(Enum id) => getField<String>(id).value;
 
-  CmsField<int> getIntField(Enum id) => getField<int>(id);
+  int? getInt(Enum id) => getField<int>(id).value;
 
-  CmsField<double> getDoubleField(Enum id) => getField<double>(id);
+  double? getDouble(Enum id) => getField<double>(id).value!;
 
-  CmsField<bool> getBoolField(Enum id) => getField<bool>(id);
+  bool? getBool(Enum id) => getField<bool>(id).value!;
 
-  CmsField<T> getReferenceField<T>(Enum id) => getField<T>(id);
+  T? getReference<T>(Enum id) {
+    final result = getField<CmsReference<T>>(id);
+    return result.value?.value;
+  }
 
-  CmsField<DateTime> getDateTimeField(Enum id) => getField<DateTime>(id);
+  DateTime? getDateTime(Enum id) => getField<DateTime>(id).value;
 
-  CmsField<List<T>> getListField<T>(Enum id) => getField<List<T>>(id);
+  List<T>? getList<T>(Enum id) => getField<List<T>>(id).value;
 }
