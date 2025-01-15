@@ -1,3 +1,11 @@
+# 0.6.0
+
+## Feat
+
+- Add `subtitle` to `CmsListScreen`
+- Add `onBackTapped` to `CmsListScreen`
+- Add `isDrawerEnabled` to `CmsListScreen`
+
 # 0.5.0
 
 ## Feat

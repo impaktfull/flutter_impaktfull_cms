@@ -5,6 +5,8 @@ import 'package:impaktfull_cms/impaktfull_cms.dart';
 class CmsListScreen<T, E> extends StatelessWidget {
   final CmsNavigator? cmsNavigator;
   final CmsConfig<T, E>? config;
+  final bool isDrawerEnabled;
+  final VoidCallback? onBackTapped;
   final Widget Function(
     BuildContext context,
     CmsListViewModel<T, E> viewModel,
@@ -15,12 +17,16 @@ class CmsListScreen<T, E> extends StatelessWidget {
     required CmsNavigator this.cmsNavigator,
     required CmsConfig<T, E> this.config,
     this.builder,
+    this.isDrawerEnabled = false,
+    this.onBackTapped,
     super.key,
   }) : viewModel = null;
 
   const CmsListScreen.value({
     required CmsListViewModel<T, E> this.viewModel,
     this.builder,
+    this.isDrawerEnabled = false,
+    this.onBackTapped,
     super.key,
   })  : cmsNavigator = null,
         config = null;
@@ -39,13 +45,17 @@ class CmsListScreen<T, E> extends StatelessWidget {
           }
           return ImpaktfullUiAdaptiveScreen(
             title: viewModel.title,
+            subtitle: viewModel.subtitle,
+            onBackTapped: onBackTapped,
+            isDrawerEnabled: isDrawerEnabled,
             actions: [
-              if (viewModel.isAddNewEnabled)
+              if (viewModel.isAddNewEnabled) ...[
                 ImpaktfullUiAdaptiveNavBarActionItem(
                   asset: ImpaktfullUiTheme.of(context).assets.icons.add,
                   title: 'Add',
                   onTap: viewModel.onAddTapped,
                 ),
+              ],
             ],
             builder: (BuildContext context) => Padding(
               padding: const EdgeInsets.all(16),

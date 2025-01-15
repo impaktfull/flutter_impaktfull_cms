@@ -13,6 +13,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
 
   final _items = <T>[];
   var _title = '';
+  String? _subtitle;
   var _headers = <CmsHeader>[];
   CmsHeader? _sortCmsHeader;
   bool? _sortAscending;
@@ -22,6 +23,8 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   var _isAddNewEnabled = true;
 
   String get title => _title;
+
+  String? get subtitle => _subtitle;
 
   List<CmsHeader> get headers => _headers;
 
@@ -75,6 +78,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
       _isLoading = true;
       notifyListeners();
       _title = cmsConfig.getTitle();
+      _subtitle = cmsConfig.getSubtitle();
       _headers = cmsConfig.getHeaders();
       _isAddNewEnabled = await cmsConfig.isAddNewEnabled();
       final pagingInfo = await cmsConfig.loadItems(

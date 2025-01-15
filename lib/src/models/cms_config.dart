@@ -23,6 +23,8 @@ abstract class CmsConfig<T, E> {
 
   String getTitle();
 
+  String? getSubtitle() => null;
+
   List<CmsHeader> getHeaders();
 
   List<CmsField<dynamic>> getFields({
