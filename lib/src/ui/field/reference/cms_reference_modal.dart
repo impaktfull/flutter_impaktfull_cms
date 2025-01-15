@@ -86,7 +86,8 @@ class _CmsReferenceModalState<T> extends State<CmsReferenceModal<T>> {
     );
   }
 
-  void _onItemSelected(CmsReference<T> item) => Navigator.of(this.context).pop(item);
+  void _onItemSelected(CmsReference<T> item) =>
+      Navigator.of(this.context).pop(item);
 
   Future<void> _onSearchChanged(String value) async {
     setState(() {

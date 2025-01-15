@@ -127,7 +127,8 @@ class UserCmsConfig extends CmsConfig<User, int> {
   Future<User> saveItem(User item) async => UserRepo.instance.save(item);
 
   @override
-  Future<User> updateItem(int id, User item) async => UserRepo.instance.update(item);
+  Future<User> updateItem(int id, User item) async =>
+      UserRepo.instance.update(item);
 
   @override
   Widget buildRow({
@@ -156,7 +157,8 @@ class UserCmsConfig extends CmsConfig<User, int> {
       email: fields.getStringField(_UserField.email).value ?? '',
       phoneNumber: fields.getStringField(_UserField.phoneNumber).value ?? '',
       active: fields.getBoolField(_UserField.active).value ?? true,
-      role: fields.getReferenceField(_UserField.role).value ?? UserRole.anonymous,
+      role:
+          fields.getReferenceField(_UserField.role).value ?? UserRole.anonymous,
     );
   }
 
@@ -166,6 +168,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
         email: fields.getStringField(_UserField.email).value,
         phoneNumber: fields.getStringField(_UserField.phoneNumber).value,
         active: fields.getBoolField(_UserField.active).value ?? true,
-        role: fields.getReferenceField(_UserField.role).value ?? UserRole.anonymous,
+        role: fields.getReferenceField(_UserField.role).value ??
+            UserRole.anonymous,
       );
 }
