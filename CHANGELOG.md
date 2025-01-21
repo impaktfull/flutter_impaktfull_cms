@@ -2,13 +2,13 @@
 
 ## Fix
 
-- impaktfull_architecture dependency updated to use range between 0.8.1 and 1.0.0
+- impaktfull_architecture dependency updated to use range between >0.8.1 and <1.0.0
 
 # 0.12.1
 
 ## Fix
 
-- impaktfull_ui dependency updated to use range between 0.32.0 and 1.0.0
+- impaktfull_ui dependency updated to use range between >0.32.0 and <1.0.0
 
 # 0.12.0
 
