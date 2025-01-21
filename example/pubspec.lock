@@ -296,15 +296,15 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.11.0"
   impaktfull_ui:
     dependency: "direct main"
     description:
       name: impaktfull_ui
-      sha256: de85609480f79e53a1df3bf87f8e67e2bae4eb2962b7ed3f47aed843cb8cb94e
+      sha256: "5d76360e55f5c55bb18cf45610a1354fd872c7641cabe1a0cbe326d7262f3e19"
       url: "https://pub.dev"
     source: hosted
-    version: "0.32.0"
+    version: "0.33.0"
   impaktfull_ui_figma_sync:
     dependency: transitive
     description:
