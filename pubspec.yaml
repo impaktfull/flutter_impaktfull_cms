@@ -8,7 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  impaktfull_architecture: ^0.8.1
+  impaktfull_architecture: ">0.8.1 <1.0.0"
   impaktfull_ui: ">0.32.0 <1.0.0"
 dev_dependencies:
   flutter_test:

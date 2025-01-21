@@ -1,3 +1,9 @@
+# 0.12.2
+
+## Fix
+
+- impaktfull_architecture dependency updated to use range between 0.8.1 and 1.0.0
+
 # 0.12.1
 
 ## Fix
