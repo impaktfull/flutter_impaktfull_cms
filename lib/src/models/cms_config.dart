@@ -34,13 +34,21 @@ abstract class CmsConfig<T, E> {
 
   E getId(T item);
 
-  String getTitle();
+  String getTitle({
+    required BuildContext context,
+  });
 
-  String? getSubtitle() => null;
+  String? getSubtitle({
+    required BuildContext context,
+  }) =>
+      null;
 
-  List<CmsHeader> getHeaders();
+  List<CmsHeader> getHeaders({
+    required BuildContext context,
+  });
 
   List<CmsField<dynamic>> getFields({
+    required BuildContext context,
     T? item,
   });
 
@@ -76,6 +84,7 @@ abstract class CmsConfig<T, E> {
   FutureOr<bool> isSaveable(T item) async => true;
 
   Widget buildRow({
+    required BuildContext context,
     required T item,
     void Function()? onOpenTapped,
     void Function()? onEditTapped,

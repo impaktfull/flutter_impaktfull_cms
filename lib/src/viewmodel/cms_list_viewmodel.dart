@@ -32,11 +32,12 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
 
   bool get isAddNewEnabled => _isAddNewEnabled;
 
-  List<Widget> get rows {
+  List<Widget> getRows(BuildContext context) {
     if (_items.isEmpty) return [];
     return _items
         .map(
           (item) => cmsConfig.buildRow(
+            context: context,
             item: item,
             onOpenTapped: () => onOpenTapped(item),
             onEditTapped: () => onEditTapped(item),
@@ -56,8 +57,11 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
     this.cmsNavigator,
   );
 
-  Future<void> initCms(CmsConfig<T, E> cmsConfig) async {
+  Future<void> initCms(BuildContext context, CmsConfig<T, E> cmsConfig) async {
     this.cmsConfig = cmsConfig;
+    _title = cmsConfig.getTitle(context: context);
+    _subtitle = cmsConfig.getSubtitle(context: context);
+    _headers = cmsConfig.getHeaders(context: context);
     _loadData();
   }
 
@@ -78,9 +82,6 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
     try {
       _isLoading = true;
       notifyListeners();
-      _title = cmsConfig.getTitle();
-      _subtitle = cmsConfig.getSubtitle();
-      _headers = cmsConfig.getHeaders();
       _isAddNewEnabled = await cmsConfig.isAddNewEnabled();
       final pagingInfo = await cmsConfig.loadItems(
         page: _page,

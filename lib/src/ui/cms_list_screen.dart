@@ -36,7 +36,7 @@ class CmsListScreen<T, E> extends StatelessWidget {
     return ChangeNotifierProvider<CmsListViewModel<T, E>>(
       create: (context) {
         if (viewModel != null) return viewModel!;
-        return CmsListViewModel(cmsNavigator!)..initCms(config!);
+        return CmsListViewModel(cmsNavigator!)..initCms(context, config!);
       },
       child: Consumer<CmsListViewModel<T, E>>(
         builder: (context, viewModel, child) {
@@ -76,7 +76,7 @@ class CmsListScreen<T, E> extends StatelessWidget {
                             ),
                           )
                           .toList(),
-                      content: viewModel.rows.map(
+                      content: viewModel.getRows(context).map(
                         (e) {
                           if (e is ImpaktfullUiTableRow) {
                             return e;

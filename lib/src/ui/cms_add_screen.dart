@@ -29,7 +29,7 @@ class CmsAddScreen<T, E> extends StatelessWidget {
     return ChangeNotifierProvider<CmsAddViewModel<T, E>>(
       create: (context) {
         if (viewModel != null) return viewModel!;
-        return CmsAddViewModel(cmsNavigator!)..initCms(config!);
+        return CmsAddViewModel(cmsNavigator!)..initCms(context, config!);
       },
       child: Consumer<CmsAddViewModel<T, E>>(
         builder: (context, viewModel, child) {

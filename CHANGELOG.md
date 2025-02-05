@@ -1,3 +1,9 @@
+# 0.13.0
+
+## Breaking
+
+- Added `context` to all viewmodels so that it is possible to use localization in your CMS
+
 # 0.12.2
 
 ## Fix

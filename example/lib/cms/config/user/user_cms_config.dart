@@ -31,10 +31,16 @@ class UserCmsConfig extends CmsConfig<User, int> {
   int getId(User item) => item.id;
 
   @override
-  String getTitle() => 'Users';
+  String getTitle({
+    required BuildContext context,
+  }) =>
+      'Users';
 
   @override
-  List<CmsHeader> getHeaders() => [
+  List<CmsHeader> getHeaders({
+    required BuildContext context,
+  }) =>
+      [
         const CmsHeader(
           id: _UserHeader.name,
           title: 'Name',
@@ -54,6 +60,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
 
   @override
   List<CmsField<dynamic>> getFields({
+    required BuildContext context,
     User? item,
   }) =>
       [
@@ -109,6 +116,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
 
   @override
   Widget buildRow({
+    required BuildContext context,
     required User item,
     void Function()? onOpenTapped,
     void Function()? onEditTapped,

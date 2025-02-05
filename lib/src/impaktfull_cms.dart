@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:impaktfull_cms/src/models/cms_config.dart';
 
 class ImpaktfullCms {
@@ -7,8 +8,10 @@ class ImpaktfullCms {
 
   ImpaktfullCms();
 
-  void register<T, E>(CmsConfig<T, E> config) {
-    final fields = config.getFields();
+  void register<T, E>(BuildContext context, CmsConfig<T, E> config) {
+    final fields = config.getFields(
+      context: context,
+    );
     final ids = fields.map((field) => field.id).toList();
     final uniqueIds = ids.toSet();
     if (uniqueIds.length != ids.length) {

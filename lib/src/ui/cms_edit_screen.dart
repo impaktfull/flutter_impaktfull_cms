@@ -33,7 +33,7 @@ class CmsEditScreen<T, E> extends StatelessWidget {
     return ChangeNotifierProvider<CmsEditViewModel<T, E>>(
       create: (context) {
         if (viewModel != null) return viewModel!;
-        return CmsEditViewModel(cmsNavigator!)..initCms(config!, item);
+        return CmsEditViewModel(cmsNavigator!)..initCms(context, config!, item);
       },
       child: Consumer<CmsEditViewModel<T, E>>(
         builder: (context, viewModel, child) {

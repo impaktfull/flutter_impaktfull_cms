@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:impaktfull_architecture/impaktfull_architecture.dart';
 import 'package:impaktfull_cms/src/models/cms_config.dart';
 import 'package:impaktfull_cms/src/models/field/cms_field.dart';
@@ -21,10 +21,12 @@ class CmsDetailsViewModel<T, E> extends ChangeNotifierEx {
     this.cmsNavigator,
   );
 
-  Future<void> initCms(CmsConfig<T, E> cmsConfig, T item) async {
+  Future<void> initCms(
+      BuildContext context, CmsConfig<T, E> cmsConfig, T item) async {
     this.cmsConfig = cmsConfig;
     _item = item;
     _fields = cmsConfig.getFields(
+      context: context,
       item: item,
     );
   }
