@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:impaktfull_cms/src/models/field/cms_field.dart';
-import 'package:impaktfull_cms/src/ui/field/reference/cms_reference_button.dart';
-import 'package:impaktfull_ui/impaktfull_ui.dart';
+import 'package:impaktfull_architecture/impaktfull_architecture.dart';
+import 'package:impaktfull_cms/impaktfull_cms.dart';
+import 'package:impaktfull_cms/src/ui/field/icon/cms_icon_button.dart';
 
-export 'package:impaktfull_cms/src/models/data/cms_reference.dart';
+export 'package:impaktfull_cms/src/models/data/cms_icon.dart';
 
-class CmsReferenceField<T> extends CmsField<CmsReference<T>> {
+class CmsIconField<T> extends CmsField<CmsIcon<T>> {
   final String modalTitle;
   final String noDataSelected;
   final String? modalNoDataLabel;
-  final Future<List<CmsReference<T>>> Function()? items;
-  final Future<List<CmsReference<T>>> Function(String)? search;
+  final Future<List<CmsIcon<T>>> Function()? items;
 
-  CmsReferenceField({
+  CmsIconField({
     required super.id,
     required super.label,
     required this.modalTitle,
@@ -20,7 +19,6 @@ class CmsReferenceField<T> extends CmsField<CmsReference<T>> {
     this.modalNoDataLabel,
     super.initialValue,
     this.items,
-    this.search,
     super.isRequired = false,
   });
 
@@ -28,15 +26,15 @@ class CmsReferenceField<T> extends CmsField<CmsReference<T>> {
   Widget buildCreateOrUpdate(BuildContext context) =>
       ImpaktfullUiAutoLayout.vertical(
         spacing: 4,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ImpaktfullUiSectionTitle(
             title: label,
             margin: EdgeInsets.zero,
           ),
-          CmsReferenceButton(
-            reference: value,
+          CmsIconButton(
+            icon: value,
             items: items,
-            search: search,
             noDataSelected: noDataSelected,
             modalTitle: modalTitle,
             modalNoDataLabel: modalNoDataLabel,
@@ -53,11 +51,21 @@ class CmsReferenceField<T> extends CmsField<CmsReference<T>> {
           title: label,
           margin: EdgeInsets.zero,
         ),
-        SelectableText(
-          value?.title ?? '',
-          style:
-              ImpaktfullUiTheme.of(context).textStyles.onCard.text.small.light,
-        ),
+        if (value == null) ...[
+          Text(
+            noDataSelected,
+            style: ImpaktfullUiTheme.of(context)
+                .textStyles
+                .onCard
+                .text
+                .small
+                .light,
+          ),
+        ] else ...[
+          ImpaktfullUiAssetWidget(
+            asset: value!.icon,
+          ),
+        ],
       ],
     );
   }

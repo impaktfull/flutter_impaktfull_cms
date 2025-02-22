@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:impaktfull_cms/impaktfull_cms.dart';
-import 'package:impaktfull_cms_example/cms/config/user/user_cms_config.dart';
-import 'package:impaktfull_cms_example/cms/navigator/main_cms_navigator.dart';
-import 'package:impaktfull_cms_example/cms/repo/user/cms_user_repo.dart';
+import 'package:impaktfull_cms_example/screen/list_with_viewmodel_screen.dart';
+import 'package:impaktfull_cms_example/screen/list_without_viewmodel_screen.dart';
+import 'package:impaktfull_ui/impaktfull_ui.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -11,15 +10,37 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cmsNavigator = MainCmsNavigator(
-      navigator: Navigator.of(context),
-    );
-    final repo = CmsUserRepo();
-    return CmsListScreen(
-      cmsNavigator: cmsNavigator,
-      config: UserCmsConfig(
-        cmsNavigator: cmsNavigator,
-        repo: repo,
+    return ImpaktfullUiScreen(
+      title: 'Test app for the impatkfull_cms package',
+      child: ImpaktfullUiListView(
+        padding: const EdgeInsets.all(16),
+        spacing: 8,
+        children: [
+          ImpaktfullUiButton(
+            fullWidth: true,
+            type: ImpaktfullUiButtonType.primary,
+            title: 'List without viewmodel',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const ListWithoutViewmodelScreen(),
+                ),
+              );
+            },
+          ),
+          ImpaktfullUiButton(
+            fullWidth: true,
+            type: ImpaktfullUiButtonType.primary,
+            title: 'List with viewmodel',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const ListWithViewmodelScreen(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

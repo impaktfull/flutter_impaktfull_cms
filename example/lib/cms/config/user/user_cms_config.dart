@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:impaktfull_cms_example/data/user.dart';
 import 'package:impaktfull_cms/impaktfull_cms.dart';
 import 'package:impaktfull_cms_example/data/user_role.dart';
@@ -12,6 +12,7 @@ enum _UserField {
   email,
   phoneNumber,
   active,
+  icon,
   role;
 }
 
@@ -91,6 +92,37 @@ class UserCmsConfig extends CmsConfig<User, int> {
           labelSelected: 'Enabled',
           labelUnselected: 'Disabled',
           initialValue: true,
+        ),
+        CmsIconField(
+          id: _UserField.icon,
+          label: 'User icon',
+          modalTitle: 'Select user icon',
+          noDataSelected: 'No user icon selected',
+          items: () async => [
+            const CmsIcon(
+              icon: ImpaktfullUiAsset.icon(Icons.arrow_back),
+              name: 'Arrow back',
+            ),
+            const CmsIcon(
+              icon: ImpaktfullUiAsset.icon(Icons.arrow_upward),
+              name: 'Arrow upward',
+            ),
+            const CmsIcon(
+              icon: ImpaktfullUiAsset.icon(Icons.arrow_downward),
+              name: 'Arrow downward',
+            ),
+            const CmsIcon(
+              icon: ImpaktfullUiAsset.icon(Icons.arrow_forward),
+              name: 'Arrow forward',
+            ),
+            const CmsIcon(
+              icon: ImpaktfullUiAsset.icon(Icons.chevron_right),
+            ),
+          ],
+          initialValue: const CmsIcon(
+            icon: ImpaktfullUiAsset.icon(Icons.arrow_forward),
+            name: 'Person',
+          ),
         ),
         CmsReferenceField<UserRole>(
           id: _UserField.role,

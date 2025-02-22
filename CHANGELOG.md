@@ -1,3 +1,13 @@
+# 0.14.0
+
+## Feat
+
+- Added `CmsIconField` and `CmsIconButton`
+
+## Fix
+
+- Make sorting optional on `CmsHeader`
+
 # 0.13.3
 
 ## Fix

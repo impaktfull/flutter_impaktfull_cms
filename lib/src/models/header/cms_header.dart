@@ -6,6 +6,6 @@ class CmsHeader {
   const CmsHeader({
     required this.id,
     required this.title,
-    required this.isSortable,
+    this.isSortable = false,
   });
 }

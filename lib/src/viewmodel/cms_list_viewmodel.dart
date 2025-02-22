@@ -111,7 +111,8 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   }
 
   Future<void> onOpenTapped(T item) async {
-    await cmsConfig.showDetails(item);
+    final result = await cmsConfig.showDetails(item);
+    if (result == null) return;
     onLoadPage(0);
   }
 

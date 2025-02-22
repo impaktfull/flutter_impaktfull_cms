@@ -52,12 +52,9 @@ class CmsAddScreen<T, E> extends StatelessWidget {
                   noDataLabel: 'No fields',
                 ),
               ),
+              const ImpaktfullUiDivider(),
               Padding(
-                padding: const EdgeInsetsDirectional.only(
-                  start: 16,
-                  end: 16,
-                  bottom: 16,
-                ),
+                padding: const EdgeInsets.all(16),
                 child: ImpaktfullUiButton(
                   type: ImpaktfullUiButtonType.primary,
                   fullWidth: true,

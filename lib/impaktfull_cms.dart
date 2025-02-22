@@ -1,7 +1,6 @@
 export 'src/impaktfull_cms.dart';
 export 'src/models/cms_config.dart';
 export 'src/models/data/paging_info.dart';
-export 'src/models/data/cms_reference.dart';
 export 'src/models/field/cms_field.dart';
 export 'src/models/header/cms_header.dart';
 export 'src/navigator/cms_navigator.dart';

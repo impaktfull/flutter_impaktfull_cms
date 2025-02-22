@@ -24,6 +24,7 @@ class MainCmsNavigator extends CmsNavigator {
         builder: (context) => ImpaktfullUiModal(
           childPadding: EdgeInsets.zero,
           title: 'Add new',
+          showDividers: true,
           child: Builder(builder: (context) {
             if (T == User) {
               return CmsAddScreen(
@@ -43,6 +44,7 @@ class MainCmsNavigator extends CmsNavigator {
         builder: (context) => ImpaktfullUiModal(
           childPadding: EdgeInsets.zero,
           title: 'Details',
+          showDividers: true,
           child: Builder(
             builder: (context) {
               if (T == User) {
@@ -65,6 +67,7 @@ class MainCmsNavigator extends CmsNavigator {
         builder: (context) => ImpaktfullUiModal(
           childPadding: EdgeInsets.zero,
           title: 'Edit',
+          showDividers: true,
           child: Builder(builder: (context) {
             if (T == User) {
               return CmsEditScreen(
@@ -85,6 +88,7 @@ class MainCmsNavigator extends CmsNavigator {
       context: context,
       builder: (context) => ImpaktfullUiModal(
         title: 'Delete',
+        showDividers: true,
         actions: [
           ImpaktfullUiButton(
             type: ImpaktfullUiButtonType.secondaryGrey,

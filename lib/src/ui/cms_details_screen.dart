@@ -48,21 +48,18 @@ class CmsDetailsScreen<T, E> extends StatelessWidget {
                 child: ImpaktfullUiListView.builder(
                   items: viewModel.fields,
                   padding: const EdgeInsets.all(16),
-                  spacing: 8,
+                  spacing: 12,
                   shrinkWrap: true,
                   itemBuilder: (context, field, index) =>
                       field.buildRead(context),
                   noDataLabel: 'No fields',
                 ),
               ),
+              const ImpaktfullUiDivider(),
               Padding(
-                padding: const EdgeInsetsDirectional.only(
-                  start: 16,
-                  end: 16,
-                  bottom: 16,
-                ),
+                padding: const EdgeInsets.all(16),
                 child: ImpaktfullUiButton(
-                  type: ImpaktfullUiButtonType.destructiveSecondary,
+                  type: ImpaktfullUiButtonType.destructiveLink,
                   fullWidth: true,
                   title: 'Delete',
                   onAsyncTap: viewModel.onDeleteTapped,
