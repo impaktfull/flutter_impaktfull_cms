@@ -7,6 +7,7 @@ class CmsListScreen<T, E> extends StatelessWidget {
   final CmsConfig<T, E>? config;
   final bool isDrawerEnabled;
   final VoidCallback? onBackTapped;
+  final List<ImpaktfullUiAdaptiveNavBarActionItem> actions;
   final Widget Function(
     BuildContext context,
     CmsListViewModel<T, E> viewModel,
@@ -19,6 +20,7 @@ class CmsListScreen<T, E> extends StatelessWidget {
     this.builder,
     this.isDrawerEnabled = false,
     this.onBackTapped,
+    this.actions = const [],
     super.key,
   }) : viewModel = null;
 
@@ -27,6 +29,7 @@ class CmsListScreen<T, E> extends StatelessWidget {
     this.builder,
     this.isDrawerEnabled = false,
     this.onBackTapped,
+    this.actions = const [],
     super.key,
   })  : cmsNavigator = null,
         config = null;
@@ -49,6 +52,7 @@ class CmsListScreen<T, E> extends StatelessWidget {
             onBackTapped: onBackTapped,
             isDrawerEnabled: isDrawerEnabled,
             actions: [
+              ...actions,
               if (viewModel.isAddNewEnabled) ...[
                 ImpaktfullUiAdaptiveNavBarActionItem(
                   asset: ImpaktfullUiTheme.of(context).assets.icons.add,

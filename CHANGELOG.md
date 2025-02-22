@@ -1,3 +1,9 @@
+# 0.15.0
+
+## Feat
+
+- Added `actions` to `CmsListScreen`
+
 # 0.14.0
 
 ## Feat
