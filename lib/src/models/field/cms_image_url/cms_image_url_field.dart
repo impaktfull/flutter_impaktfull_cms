@@ -56,7 +56,12 @@ class CmsImageUrlField extends CmsField<String> {
         if (value == null) ...[
           Text(
             'N/A',
-            style: ImpaktfullUiTheme.of(context).textStyles.onCard.text.small.light,
+            style: ImpaktfullUiTheme.of(context)
+                .textStyles
+                .onCard
+                .text
+                .small
+                .light,
           ),
         ] else ...[
           ImageUrlPreview(
