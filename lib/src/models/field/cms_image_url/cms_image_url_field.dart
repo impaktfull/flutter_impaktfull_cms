@@ -10,7 +10,7 @@ class CmsImageUrlField extends CmsField<String> {
   final double? maxHeight;
   final BoxFit fit;
 
-  CmsImageUrlField.url({
+  CmsImageUrlField({
     required super.id,
     required super.label,
     super.initialValue,

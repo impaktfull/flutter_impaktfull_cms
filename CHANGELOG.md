@@ -1,3 +1,9 @@
+# 0.17.1
+
+## Fix
+
+- Fixed `CmsImageUrlField.url` to be `CmsImageUrlField`
+
 # 0.17.0
 
 ## Feat

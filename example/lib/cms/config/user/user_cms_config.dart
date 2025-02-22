@@ -142,7 +142,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
               )
               .toList(),
         ),
-        CmsImageUrlField.url(
+        CmsImageUrlField(
           id: _UserField.profilePicture,
           label: 'User profile picture',
           aspectRatio: 1,
