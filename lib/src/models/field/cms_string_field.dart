@@ -4,11 +4,13 @@ import 'package:impaktfull_cms/impaktfull_cms.dart';
 
 class CmsStringField extends CmsField<String> {
   final bool obscureText;
+  final bool readOnly;
 
   CmsStringField({
     required super.id,
     required super.label,
     super.initialValue,
+    this.readOnly = false,
     this.obscureText = false,
     super.isRequired = false,
   });
@@ -19,6 +21,7 @@ class CmsStringField extends CmsField<String> {
       label: label,
       value: value,
       obscureText: obscureText,
+      readOnly: readOnly,
       onChanged: onChanged,
     );
   }

@@ -1,3 +1,9 @@
+# 0.17.0
+
+## Feat
+
+- Added `readOnly` to `CmsTextField`
+
 # 0.16.0
 
 ## Feat
