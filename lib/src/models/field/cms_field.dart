@@ -5,8 +5,9 @@ import 'package:impaktfull_cms/impaktfull_cms.dart';
 export 'cms_bool_field.dart';
 export 'cms_int_field.dart';
 export 'cms_string_field.dart';
-export 'cms_reference_field.dart';
-export 'cms_icon_field.dart';
+export 'cms_image_url/cms_image_url_field.dart';
+export 'reference/cms_reference_field.dart';
+export 'icon/cms_icon_field.dart';
 
 abstract class CmsField<T> {
   final _listeners = <CmsFieldListener>{};

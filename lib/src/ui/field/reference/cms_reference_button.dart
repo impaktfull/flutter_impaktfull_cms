@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:impaktfull_architecture/impaktfull_architecture.dart';
-import 'package:impaktfull_cms/src/models/data/cms_reference.dart';
+import 'package:impaktfull_cms/src/models/field/reference/cms_reference.dart';
 import 'package:impaktfull_cms/src/ui/field/reference/cms_reference_modal.dart';
 
 class CmsReferenceButton<T> extends StatelessWidget {

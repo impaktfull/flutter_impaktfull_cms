@@ -7,6 +7,7 @@ class User {
   final String phoneNumber;
   final bool active;
   final UserRole role;
+  final String? profilePictureUrl;
 
   const User({
     required this.id,
@@ -15,6 +16,7 @@ class User {
     required this.phoneNumber,
     required this.active,
     required this.role,
+    required this.profilePictureUrl,
   });
 
   User copyWith({
@@ -24,6 +26,7 @@ class User {
     String? phoneNumber,
     bool? active,
     UserRole? role,
+    String? profilePictureUrl,
   }) {
     return User(
       id: id ?? this.id,
@@ -32,6 +35,7 @@ class User {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       active: active ?? this.active,
       role: role ?? this.role,
+      profilePictureUrl: profilePictureUrl ?? this.profilePictureUrl,
     );
   }
 }

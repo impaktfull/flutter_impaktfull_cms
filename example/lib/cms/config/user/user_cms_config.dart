@@ -13,6 +13,7 @@ enum _UserField {
   phoneNumber,
   active,
   icon,
+  profilePicture,
   role;
 }
 
@@ -141,6 +142,12 @@ class UserCmsConfig extends CmsConfig<User, int> {
               )
               .toList(),
         ),
+        CmsImageUrlField.url(
+          id: _UserField.profilePicture,
+          label: 'User profile picture',
+          aspectRatio: 1,
+          fit: BoxFit.cover,
+        ),
       ];
 
   @override
@@ -175,6 +182,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
       phoneNumber: fields.getString(_UserField.phoneNumber) ?? '',
       active: fields.getBool(_UserField.active) ?? true,
       role: fields.getReference(_UserField.role) ?? UserRole.anonymous,
+      profilePictureUrl: fields.getString(_UserField.profilePicture),
     );
   }
 
@@ -183,7 +191,8 @@ class UserCmsConfig extends CmsConfig<User, int> {
         name: fields.getString(_UserField.name),
         email: fields.getString(_UserField.email),
         phoneNumber: fields.getString(_UserField.phoneNumber),
-        active: fields.getBool(_UserField.active) ?? true,
-        role: fields.getReference(_UserField.role) ?? UserRole.anonymous,
+        active: fields.getBool(_UserField.active),
+        role: fields.getReference(_UserField.role),
+        profilePictureUrl: fields.getString(_UserField.profilePicture),
       );
 }
