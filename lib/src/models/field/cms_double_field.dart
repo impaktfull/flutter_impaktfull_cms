@@ -16,12 +16,13 @@ class CmsDoubleField extends CmsField<double> {
   });
 
   @override
-  Widget buildCreateOrUpdate(BuildContext context) => ImpaktfullUiNumberInput(
+  Widget buildCreateOrUpdate(BuildContext context) =>
+      ImpaktfullUiNumberInput<double>(
         label: label,
-        value: value!.toInt(),
-        min: min?.toInt(),
-        max: max?.toInt(),
-        onChanged: (value) => onChanged(value.toDouble()),
+        value: value ?? 0,
+        min: min,
+        max: max,
+        onChanged: (value) => onChanged(value),
       );
 
   @override

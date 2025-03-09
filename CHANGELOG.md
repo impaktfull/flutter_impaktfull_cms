@@ -1,3 +1,9 @@
+# 0.18.4
+
+## Fix
+
+- Fixed `CmsDoubleField` to be able to return the correct value
+
 # 0.18.3
 
 ## Fix
