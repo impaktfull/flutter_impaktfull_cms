@@ -10,6 +10,7 @@ import 'package:impaktfull_ui/impaktfull_ui.dart';
 
 enum _UserField {
   id,
+  points,
   name,
   email,
   phoneNumber,
@@ -73,6 +74,11 @@ class UserCmsConfig extends CmsConfig<User, int> {
           label: 'Index',
           initialValue: item?.id ?? 0,
           min: 0,
+        ),
+        CmsDoubleField(
+          id: _UserField.points,
+          label: 'Points',
+          initialValue: item?.points ?? 0,
         ),
         CmsStringField(
           id: _UserField.name,
@@ -163,6 +169,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
   User createNewItem(List<CmsField> fields) {
     return User(
       id: 0,
+      points: fields.getDouble(_UserField.points) ?? 0,
       name: fields.getString(_UserField.name) ?? '',
       email: fields.getString(_UserField.email) ?? '',
       phoneNumber: fields.getString(_UserField.phoneNumber) ?? '',

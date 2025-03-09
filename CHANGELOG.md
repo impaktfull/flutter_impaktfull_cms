@@ -1,3 +1,9 @@
+# 0.18.3
+
+## Fix
+
+- Example updated to use `CmsDoubleField`
+
 # 0.18.2
 
 ## Fix
