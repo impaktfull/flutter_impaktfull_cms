@@ -3,6 +3,7 @@ import 'package:impaktfull_architecture/impaktfull_architecture.dart';
 import 'package:impaktfull_cms/impaktfull_cms.dart';
 
 export 'cms_bool_field.dart';
+export 'cms_double_field.dart';
 export 'cms_int_field.dart';
 export 'cms_string_field.dart';
 export 'cms_image_url/cms_image_url_field.dart';
