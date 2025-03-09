@@ -34,7 +34,8 @@ class CmsDoubleField extends CmsField<double> {
         ),
         SelectableText(
           value?.toString() ?? '',
-          style: ImpaktfullUiTheme.of(context).textStyles.onCard.text.small.light,
+          style:
+              ImpaktfullUiTheme.of(context).textStyles.onCard.text.small.light,
         ),
       ],
     );
