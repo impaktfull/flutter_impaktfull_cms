@@ -1,3 +1,9 @@
+# 0.18.2
+
+## Fix
+
+- Fixed `CmsIconField` to be able to return the correct value
+
 # 0.18.0 - 0.18.1
 
 ## Feat

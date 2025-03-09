@@ -68,12 +68,17 @@ abstract class CmsFieldListener {
 }
 
 extension CmsFieldExtension on List<CmsField<dynamic>> {
-  CmsField<T> getField<T>(Enum id) {
+  dynamic _getField(Enum id) {
     final result = firstOrNullWhere((field) => field.id == id);
     if (result == null) {
       throw Exception('Field not found (with id: $id)');
     }
-    return result as CmsField<T>;
+    return result;
+  }
+
+  CmsField<T> getField<T>(Enum id) {
+    final field = _getField(id);
+    return field as CmsField<T>;
   }
 
   String? getString(Enum id) => getField<String>(id).value;
@@ -89,7 +94,11 @@ extension CmsFieldExtension on List<CmsField<dynamic>> {
     return result.value?.value;
   }
 
-  CmsIcon<T>? getIcon<T>(Enum id) => getField<CmsIcon<T>>(id).value;
+  CmsIcon<T>? getIcon<T>(Enum id) {
+    final result = _getField(id);
+    final field = result as CmsIconField<T>;
+    return field.value;
+  }
 
   DateTime? getDateTime(Enum id) => getField<DateTime>(id).value;
 

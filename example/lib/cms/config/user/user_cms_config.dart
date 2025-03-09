@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:impaktfull_cms_example/data/icon_data.dart';
 import 'package:impaktfull_cms_example/data/user.dart';
 import 'package:impaktfull_cms/impaktfull_cms.dart';
 import 'package:impaktfull_cms_example/data/user_role.dart';
+import 'package:impaktfull_cms_example/extension/list_extension.dart';
 import 'package:impaktfull_ui/impaktfull_ui.dart';
 
 enum _UserField {
@@ -92,44 +94,28 @@ class UserCmsConfig extends CmsConfig<User, int> {
           label: 'User enabled?',
           labelSelected: 'Enabled',
           labelUnselected: 'Disabled',
-          initialValue: true,
+          initialValue: item?.active ?? true,
         ),
-        CmsIconField(
+        CmsIconField<String>(
           id: _UserField.icon,
           label: 'User icon',
           modalTitle: 'Select user icon',
           noDataSelected: 'No user icon selected',
-          items: () async => [
-            const CmsIcon(
-              icon: ImpaktfullUiAsset.icon(Icons.arrow_back),
-              name: 'Arrow back',
-            ),
-            const CmsIcon(
-              icon: ImpaktfullUiAsset.icon(Icons.arrow_upward),
-              name: 'Arrow upward',
-            ),
-            const CmsIcon(
-              icon: ImpaktfullUiAsset.icon(Icons.arrow_downward),
-              name: 'Arrow downward',
-            ),
-            const CmsIcon(
-              icon: ImpaktfullUiAsset.icon(Icons.arrow_forward),
-              name: 'Arrow forward',
-            ),
-            const CmsIcon(
-              icon: ImpaktfullUiAsset.icon(Icons.chevron_right),
-            ),
-          ],
-          initialValue: const CmsIcon(
-            icon: ImpaktfullUiAsset.icon(Icons.arrow_forward),
-            name: 'Person',
-          ),
+          items: () async => CmsIconData.list,
+          initialValue: CmsIconData.list
+              .firstOrNullWhere((e) => e.name == item?.iconData),
         ),
         CmsReferenceField<UserRole>(
           id: _UserField.role,
           label: 'User role',
           modalTitle: 'Select user role',
           noDataSelected: 'No user role selected',
+          initialValue: item == null
+              ? null
+              : CmsReference(
+                  value: item.role,
+                  title: item.role.name,
+                ),
           items: () async => UserRole.values
               .map(
                 (e) => CmsReference(value: e, title: e.name),
@@ -181,6 +167,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
       email: fields.getString(_UserField.email) ?? '',
       phoneNumber: fields.getString(_UserField.phoneNumber) ?? '',
       active: fields.getBool(_UserField.active) ?? true,
+      iconData: fields.getIcon<String>(_UserField.icon)?.name ?? '',
       role: fields.getReference(_UserField.role) ?? UserRole.anonymous,
       profilePictureUrl: fields.getString(_UserField.profilePicture),
     );
@@ -192,6 +179,7 @@ class UserCmsConfig extends CmsConfig<User, int> {
         email: fields.getString(_UserField.email),
         phoneNumber: fields.getString(_UserField.phoneNumber),
         active: fields.getBool(_UserField.active),
+        iconData: fields.getIcon<String>(_UserField.icon)?.value,
         role: fields.getReference(_UserField.role),
         profilePictureUrl: fields.getString(_UserField.profilePicture),
       );

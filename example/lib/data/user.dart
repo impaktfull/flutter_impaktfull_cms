@@ -6,6 +6,7 @@ class User {
   final String email;
   final String phoneNumber;
   final bool active;
+  final String iconData;
   final UserRole role;
   final String? profilePictureUrl;
 
@@ -15,6 +16,7 @@ class User {
     required this.email,
     required this.phoneNumber,
     required this.active,
+    required this.iconData,
     required this.role,
     required this.profilePictureUrl,
   });
@@ -25,6 +27,7 @@ class User {
     String? email,
     String? phoneNumber,
     bool? active,
+    String? iconData,
     UserRole? role,
     String? profilePictureUrl,
   }) {
@@ -34,6 +37,7 @@ class User {
       email: email ?? this.email,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       active: active ?? this.active,
+      iconData: iconData ?? this.iconData,
       role: role ?? this.role,
       profilePictureUrl: profilePictureUrl ?? this.profilePictureUrl,
     );
