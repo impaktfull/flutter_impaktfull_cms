@@ -1,3 +1,9 @@
+# 0.18.0
+
+## Feat
+
+- Added `CmsDoubleField`
+
 # 0.17.1
 
 ## Fix
