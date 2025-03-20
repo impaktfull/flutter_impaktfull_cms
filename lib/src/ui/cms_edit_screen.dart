@@ -43,8 +43,7 @@ class CmsEditScreen<T, E> extends StatelessWidget {
           return ImpaktfullUiAutoLayout.vertical(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(
-                flex: 0,
+              Flexible(
                 child: ImpaktfullUiListView.builder(
                   items: viewModel.fields,
                   padding: const EdgeInsets.all(16),

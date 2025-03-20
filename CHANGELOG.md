@@ -1,3 +1,9 @@
+# 0.19.0
+
+## Feature
+
+- Scrollable content in `CmsAddScreen`, `CmsDetailsScreen` and `CmsEditScreen`
+
 # 0.18.4
 
 ## Fix
@@ -18,7 +24,7 @@
 
 # 0.18.0 - 0.18.1
 
-## Feat
+## Feature
 
 - Added `CmsDoubleField`
 
@@ -30,25 +36,25 @@
 
 # 0.17.0
 
-## Feat
+## Feature
 
 - Added `readOnly` to `CmsTextField`
 
 # 0.16.0
 
-## Feat
+## Feature
 
 - Added `CmsImageUrlField`
 
 # 0.15.0
 
-## Feat
+## Feature
 
 - Added `actions` to `CmsListScreen`
 
 # 0.14.0
 
-## Feat
+## Feature
 
 - Added `CmsIconField` and `CmsIconButton`
 
@@ -88,7 +94,7 @@
 
 # 0.12.0
 
-## Feat
+## Feature
 
 - Update the `requiredValue` to `isRequired`
 
@@ -98,38 +104,38 @@
 
 # 0.11.0
 
-## Feat
+## Feature
 
 - Added support for required fields
 
 # 0.10.0
 
-## Feat
+## Feature
 
 - BREAKING: Changed the get...Field to get... and instantly return the value
 
 # 0.9.0
 
-## Feat
+## Feature
 
 - BREAKING: Renamed `CmsRepo` to `CmsRepository`
 - Added `searchQuery` to `CmsRepository`
 
 # 0.8.0
 
-## Feat
+## Feature
 
 - BREAKING: Added `CmsRepo` to `CmsConfig`
 
 # 0.7.0
 
-## Feat
+## Feature
 
 - BREAKING: Added better item loading for `CmsReferenceField`
 
 # 0.6.0
 
-## Feat
+## Feature
 
 - Add `subtitle` to `CmsListScreen`
 - Add `onBackTapped` to `CmsListScreen`
@@ -137,31 +143,31 @@
 
 # 0.5.0
 
-## Feat
+## Feature
 
 - Make it possible to use a custom viewmodel for `CmsAddScreen`, `CmsDetailsScreen`, `CmsEditScreen` and `CmsListScreen`
 
 # 0.4.0
 
-## Feat
+## Feature
 
 - Expose the `CmsConfig` in `CmsAddViewModel`, `CmsDetailsViewModel`, `CmsEditViewModel` and `CmsListViewModel`
 
 # 0.3.0
 
-## Feat
+## Feature
 
 - Exposed the `CmsNavigator` in `CmsAddViewModel`, `CmsDetailsViewModel`, `CmsEditViewModel` and `CmsListViewModel`
 
 # 0.2.0
 
-## Feat
+## Feature
 
 - BREAKING: Change `init` to `initCms` in `CmsAddViewModel`, `CmsDetailsViewModel`, `CmsEditViewModel` and `CmsListViewModel`
 
 # 0.1.0
 
-## Feat
+## Feature
 
 - Added support for references using `CmsReferenceField` and `CmsReference`
 
@@ -173,6 +179,6 @@
 
 # 0.0.1
 
-## Feat
+## Feature
 
 - Initial release
