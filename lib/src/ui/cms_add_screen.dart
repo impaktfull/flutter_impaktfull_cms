@@ -6,7 +6,8 @@ import 'package:impaktfull_cms/src/ui/cms_updater.dart';
 class CmsAddScreen<T, E> extends StatelessWidget {
   final CmsNavigator? cmsNavigator;
   final CmsConfig<T, E>? config;
-  final Widget Function(BuildContext context, CmsAddViewModel<T, E> viewModel)? builder;
+  final Widget Function(BuildContext context, CmsAddViewModel<T, E> viewModel)?
+      builder;
   final CmsAddViewModel<T, E>? viewModel;
 
   const CmsAddScreen({

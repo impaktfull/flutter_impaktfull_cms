@@ -7,7 +7,8 @@ class CmsDetailsScreen<T, E> extends StatelessWidget {
   final CmsNavigator? cmsNavigator;
   final CmsConfig<T, E>? config;
   final T item;
-  final Widget Function(BuildContext context, CmsDetailsViewModel<T, E> viewModel)? builder;
+  final Widget Function(
+      BuildContext context, CmsDetailsViewModel<T, E> viewModel)? builder;
   final CmsDetailsViewModel<T, E>? viewModel;
 
   const CmsDetailsScreen({
@@ -31,7 +32,8 @@ class CmsDetailsScreen<T, E> extends StatelessWidget {
     return ChangeNotifierProvider<CmsDetailsViewModel<T, E>>(
       create: (context) {
         if (viewModel != null) return viewModel!;
-        return CmsDetailsViewModel(cmsNavigator!)..initCms(context, config!, item);
+        return CmsDetailsViewModel(cmsNavigator!)
+          ..initCms(context, config!, item);
       },
       child: Consumer<CmsDetailsViewModel<T, E>>(
         builder: (context, viewModel, child) {
@@ -47,7 +49,8 @@ class CmsDetailsScreen<T, E> extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   spacing: 12,
                   shrinkWrap: true,
-                  itemBuilder: (context, field, index) => field.buildRead(context),
+                  itemBuilder: (context, field, index) =>
+                      field.buildRead(context),
                   noDataLabel: 'No fields',
                 ),
               ),
