@@ -1,3 +1,9 @@
+# 0.20.0
+
+## Feature
+
+- BREAKING: Require `impaktfull_ui` version >0.49.0 (breaking changes with ImpaktfullUiPlaceholder)
+
 # 0.19.1
 
 ## Fix

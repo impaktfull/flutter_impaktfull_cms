@@ -82,7 +82,9 @@ class _CmsIconModalState extends State<CmsIconModal> {
               ),
             );
           },
-          noDataLabel: widget.noDataLabel ?? 'No data found',
+          placeholderData: ImpaktfullUiListViewPlaceholderData(
+            title: widget.noDataLabel ?? 'No data found',
+          ),
         ),
       ),
     );

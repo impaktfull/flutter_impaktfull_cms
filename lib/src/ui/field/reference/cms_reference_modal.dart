@@ -77,7 +77,9 @@ class _CmsReferenceModalState<T> extends State<CmsReferenceModal<T>> {
                     onTap: () => _onItemSelected(item),
                   );
                 },
-                noDataLabel: widget.noDataLabel ?? 'No data found',
+                placeholderData: ImpaktfullUiListViewPlaceholderData(
+                  title: widget.noDataLabel ?? 'No data found',
+                ),
               ),
             ),
           ],

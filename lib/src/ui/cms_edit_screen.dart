@@ -52,7 +52,9 @@ class CmsEditScreen<T, E> extends StatelessWidget {
                   itemBuilder: (context, field, index) => CmsFieldUpdater(
                     field: field,
                   ),
-                  noDataLabel: 'No fields',
+                  placeholderData: const ImpaktfullUiListViewPlaceholderData(
+                    title: 'No fields',
+                  ),
                 ),
               ),
               const ImpaktfullUiDivider(),

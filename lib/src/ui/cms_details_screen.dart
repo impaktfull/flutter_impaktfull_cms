@@ -51,7 +51,9 @@ class CmsDetailsScreen<T, E> extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, field, index) =>
                       field.buildRead(context),
-                  noDataLabel: 'No fields',
+                  placeholderData: const ImpaktfullUiListViewPlaceholderData(
+                    title: 'No fields',
+                  ),
                 ),
               ),
               const ImpaktfullUiDivider(),
