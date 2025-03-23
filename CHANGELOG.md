@@ -1,3 +1,9 @@
+# 0.19.1
+
+## Fix
+
+- Limit the `impaktfull_ui` dependency to a range between >0.32.0 and <0.48.2
+
 # 0.19.0
 
 ## Feature
