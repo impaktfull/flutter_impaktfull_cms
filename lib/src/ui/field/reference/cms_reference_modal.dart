@@ -47,16 +47,17 @@ class _CmsReferenceModalState<T> extends State<CmsReferenceModal<T>> {
           mainAxisSize: MainAxisSize.min,
           spacing: 8,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: ImpaktfullUiInputField(
-                label: 'Search',
-                value: _searchQuery,
-                onChanged: _onSearchChanged,
+            if (widget.search != null) ...[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ImpaktfullUiInputField(
+                  label: 'Search',
+                  value: _searchQuery,
+                  onChanged: _onSearchChanged,
+                ),
               ),
-            ),
-            Expanded(
-              flex: 0,
+            ],
+            Flexible(
               child: ImpaktfullUiListView.builder(
                 items: _items,
                 shrinkWrap: true,

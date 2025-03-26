@@ -1,3 +1,10 @@
+# 0.20.1
+
+## Fix
+
+- Fixed `CmsReferenceModal` to be able to scroll
+- Fixed `CmsReferenceModal` to show the search field when `search` is not null
+
 # 0.20.0
 
 ## Feature
