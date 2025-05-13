@@ -61,6 +61,7 @@ class CmsEditScreen<T, E> extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: ImpaktfullUiAutoLayout.vertical(
+                  spacing: 8,
                   children: [
                     if (viewModel.isDeletable) ...[
                       ImpaktfullUiButton(

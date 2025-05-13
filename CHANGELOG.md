@@ -1,3 +1,9 @@
+# 0.23.1
+
+## Fix
+
+- Spacing in the `CmsDetailsScreen`
+
 # 0.21.0 - 0.23.0
 
 ## Feature
