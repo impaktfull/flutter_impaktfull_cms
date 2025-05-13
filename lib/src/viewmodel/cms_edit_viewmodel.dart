@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:impaktfull_architecture/impaktfull_architecture.dart';
 import 'package:impaktfull_cms/src/models/cms_config.dart';
@@ -15,7 +17,11 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
 
   late final T _item;
 
+  var _isDeletable = false;
+
   List<CmsField<dynamic>> get fields => _fields;
+
+  bool get isDeletable => _isDeletable;
 
   CmsEditViewModel(
     this.cmsNavigator,
@@ -29,6 +35,30 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
       context: context,
       item: item,
     );
+    _isDeletable = await cmsConfig.isDeletable(item);
+    notifyListeners();
+  }
+
+  Future<void> onDeleteTapped() async {
+    try {
+      final isDeletable = await cmsConfig.isDeletable(_item);
+      if (!isDeletable) {
+        return;
+      }
+      final shouldBeDeleted = await cmsNavigator.showDeleteConfirmation(
+        cmsConfig,
+        _item,
+      );
+      if (shouldBeDeleted != true) return;
+      await cmsConfig.deleteItem(_item);
+      cmsNavigator.goBack();
+    } catch (error, trace) {
+      cmsNavigator.showError(
+        message: 'Error deleting item ${T.toString()}',
+        error: error,
+        trace: trace,
+      );
+    }
   }
 
   Future<void> onSaveTapped() async {

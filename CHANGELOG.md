@@ -1,3 +1,11 @@
+# 0.21.0
+
+## Feature
+
+- Added `isDeletable` to `CmsDetailsViewModel` and `CmsEditViewModel`
+- Added `onDeleteTapped` to `CmsDetailsViewModel` and `CmsEditViewModel`
+- Added `onUpdateTapped` to `CmsDetailsViewModel`
+
 # 0.20.1
 
 ## Fix

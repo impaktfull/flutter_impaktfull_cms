@@ -13,9 +13,13 @@ class CmsDetailsViewModel<T, E> extends ChangeNotifierEx {
 
   late final List<CmsField<dynamic>> _fields;
 
-  late final T _item;
+  late T _item;
+
+  var _isDeletable = false;
 
   List<CmsField<dynamic>> get fields => _fields;
+
+  bool get isDeletable => _isDeletable;
 
   CmsDetailsViewModel(
     this.cmsNavigator,
@@ -29,6 +33,8 @@ class CmsDetailsViewModel<T, E> extends ChangeNotifierEx {
       context: context,
       item: item,
     );
+    _isDeletable = await cmsConfig.isDeletable(item);
+    notifyListeners();
   }
 
   Future<void> onDeleteTapped() async {
@@ -51,5 +57,11 @@ class CmsDetailsViewModel<T, E> extends ChangeNotifierEx {
         trace: trace,
       );
     }
+  }
+
+  Future<void> onUpdateTapped() async {
+    final updatedItem = await cmsNavigator.showEdit(cmsConfig, _item);
+    if (updatedItem == null) return;
+    cmsNavigator.goBackWithResult(result: updatedItem);
   }
 }

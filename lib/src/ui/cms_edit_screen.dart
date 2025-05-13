@@ -60,11 +60,23 @@ class CmsEditScreen<T, E> extends StatelessWidget {
               const ImpaktfullUiDivider(),
               Padding(
                 padding: const EdgeInsets.all(16),
-                child: ImpaktfullUiButton(
-                  type: ImpaktfullUiButtonType.primary,
-                  fullWidth: true,
-                  title: 'Update',
-                  onAsyncTap: viewModel.onSaveTapped,
+                child: ImpaktfullUiAutoLayout.vertical(
+                  children: [
+                    if (viewModel.isDeletable) ...[
+                      ImpaktfullUiButton(
+                        type: ImpaktfullUiButtonType.destructiveTertiary,
+                        fullWidth: true,
+                        title: 'Delete',
+                        onAsyncTap: viewModel.onDeleteTapped,
+                      ),
+                    ],
+                    ImpaktfullUiButton(
+                      type: ImpaktfullUiButtonType.secondary,
+                      fullWidth: true,
+                      title: 'Update',
+                      onAsyncTap: viewModel.onSaveTapped,
+                    ),
+                  ],
                 ),
               ),
             ],
