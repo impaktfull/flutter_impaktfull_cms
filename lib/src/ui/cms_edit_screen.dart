@@ -8,7 +8,8 @@ class CmsEditScreen<T, E> extends StatelessWidget {
   final CmsNavigator? cmsNavigator;
   final CmsConfig<T, E>? config;
   final T item;
-  final Widget Function(BuildContext context, CmsEditViewModel<T, E> viewModel)? builder;
+  final Widget Function(BuildContext context, CmsEditViewModel<T, E> viewModel)?
+      builder;
   final CmsEditViewModel<T, E>? viewModel;
 
   const CmsEditScreen({
