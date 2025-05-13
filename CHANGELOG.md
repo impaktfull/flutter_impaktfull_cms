@@ -1,3 +1,9 @@
+# 0.23.3
+
+## Fix
+
+- Fixed `CmsDetailsViewModel` and `CmsEditViewModel` to return the correct result when the item is deleted
+
 # 0.23.2
 
 ## Fix

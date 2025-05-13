@@ -51,7 +51,7 @@ class CmsEditViewModel<T, E> extends ChangeNotifierEx {
       );
       if (shouldBeDeleted != true) return;
       await cmsConfig.deleteItem(_item);
-      cmsNavigator.goBack();
+      cmsNavigator.goBackWithResult(result: true);
     } catch (error, trace) {
       cmsNavigator.showError(
         message: 'Error deleting item ${T.toString()}',
