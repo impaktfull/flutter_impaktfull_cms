@@ -1,3 +1,9 @@
+# 0.23.2
+
+## Fix
+
+- Primary button on the `CmsEditScreen`
+
 # 0.23.1
 
 ## Fix
