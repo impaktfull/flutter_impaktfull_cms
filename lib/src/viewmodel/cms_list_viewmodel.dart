@@ -112,7 +112,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
 
   Future<void> onOpenTapped(T item) async {
     final result = await cmsConfig.showDetails(item);
-    if (result == null) return;
+    if (result == item) return;
     onLoadPage(0);
   }
 
@@ -120,7 +120,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
     final isEditable = await cmsConfig.isEditable(item);
     if (!isEditable) return;
     final result = await cmsConfig.showEdit(item);
-    if (result == null) return;
+    if (result == item) return;
     onLoadPage(0);
   }
 

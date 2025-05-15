@@ -1,3 +1,9 @@
+# 0.23.4
+
+## Fix
+
+- `CsmDetailViewModel` and `CmsEditViewModel` now report the correct result when the item is deleted
+
 # 0.23.3
 
 ## Fix
