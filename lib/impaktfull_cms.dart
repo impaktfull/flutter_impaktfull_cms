@@ -3,6 +3,7 @@ export 'src/models/cms_config.dart';
 export 'src/models/data/paging_info.dart';
 export 'src/models/field/cms_field.dart';
 export 'src/models/header/cms_header.dart';
+export 'src/models/sort/cms_sort.dart';
 export 'src/navigator/cms_navigator.dart';
 export 'src/repo/cms_repo.dart';
 export 'src/ui/cms_list_screen.dart';

@@ -8,11 +8,13 @@ class CmsUserRepo extends CmsRepository<User, int> {
     required int page,
     required int pageSize,
     String? searchQuery,
+    CmsSort? sort,
   }) async =>
       UserRepo.instance.getUsers(
         page: page,
         pageSize: pageSize,
         searchQuery: searchQuery,
+        sort: sort,
       );
 
   @override

@@ -66,6 +66,13 @@ class CmsListScreen<T, E> extends StatelessWidget {
               child: ImpaktfullUiAutoLayout.vertical(
                 spacing: 8,
                 children: [
+                  if (viewModel.isSearchEnabled) ...[
+                    ImpaktfullUiInputField(
+                      label: 'Search',
+                      value: viewModel.searchQuery,
+                      onChanged: viewModel.onSearchQueryChanged,
+                    ),
+                  ],
                   Expanded(
                     child: ImpaktfullUiTable(
                       isLoading: viewModel.isLoading,

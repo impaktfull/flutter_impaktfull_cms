@@ -14,5 +14,6 @@ abstract class CmsRepository<T, E> {
     required int page,
     required int pageSize,
     String? searchQuery,
+    CmsSort? sort,
   });
 }
