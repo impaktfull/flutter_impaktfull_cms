@@ -36,6 +36,9 @@ class UserCmsConfig extends CmsConfig<User, int> {
   int getId(User item) => item.id;
 
   @override
+  bool get isSearchEnabled => true;
+
+  @override
   String getTitle({
     required BuildContext context,
   }) =>

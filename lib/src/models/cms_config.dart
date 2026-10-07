@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:impaktfull_cms/src/models/data/paging_info.dart';
 import 'package:impaktfull_cms/src/models/field/cms_field.dart';
 import 'package:impaktfull_cms/src/models/header/cms_header.dart';
+import 'package:impaktfull_cms/src/models/sort/cms_sort.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 import 'package:impaktfull_cms/src/repo/cms_repo.dart';
 
@@ -61,11 +62,21 @@ abstract class CmsConfig<T, E> {
   Future<bool?> showDeleteConfirmation(T item) =>
       cmsNavigator.showDeleteConfirmation(this, item);
 
+  /// Shows a search field above the list. The query is passed to [loadItems]
+  bool get isSearchEnabled => false;
+
   Future<PagingInfo<T>> loadItems({
     required int page,
     required int pageSize,
+    String? searchQuery,
+    CmsSort? sort,
   }) =>
-      repo.loadAll(page: page, pageSize: pageSize);
+      repo.loadAll(
+        page: page,
+        pageSize: pageSize,
+        searchQuery: searchQuery,
+        sort: sort,
+      );
 
   Future<T> loadItem(E id) => repo.load(id);
 

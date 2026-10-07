@@ -1,3 +1,17 @@
+# 0.24.0
+
+## Feature
+
+- Server-side sorting: tapping a sortable `CmsHeader` cycles ascending → descending → default, and the active `CmsSort` is passed to `CmsRepository.loadAll`
+- Server-side search: override `CmsConfig.isSearchEnabled` to show a search field above the `CmsListScreen`; the (debounced, trimmed) query is passed to `CmsRepository.loadAll`
+- Changing the search or sort goes back to the first page
+- `CmsListViewModel` ignores responses of outdated requests
+
+## Breaking
+
+- `CmsRepository.loadAll` has a new `CmsSort? sort` parameter
+- `CmsConfig.loadItems` has new `String? searchQuery` and `CmsSort? sort` parameters
+
 # 0.23.4
 
 ## Fix

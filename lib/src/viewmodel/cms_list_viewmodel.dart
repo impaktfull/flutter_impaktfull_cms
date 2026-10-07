@@ -1,10 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:impaktfull_architecture/impaktfull_architecture.dart';
 import 'package:impaktfull_cms/src/models/cms_config.dart';
 import 'package:impaktfull_cms/src/models/header/cms_header.dart';
+import 'package:impaktfull_cms/src/models/sort/cms_sort.dart';
 import 'package:impaktfull_cms/src/navigator/cms_navigator.dart';
 
 class CmsListViewModel<T, E> extends ChangeNotifierEx {
+  static const searchDebounceDuration = Duration(milliseconds: 300);
+
   @protected
   final CmsNavigator cmsNavigator;
 
@@ -15,12 +20,15 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   var _title = '';
   String? _subtitle;
   var _headers = <CmsHeader>[];
-  CmsHeader? _sortCmsHeader;
-  bool? _sortAscending;
+  CmsSort? _sort;
+  var _searchQuery = '';
+  Timer? _searchDebounce;
+  var _requestId = 0;
   var _page = 0;
   var _totalPages = 0;
   var _isLoading = false;
   var _isAddNewEnabled = true;
+  var _isSearchEnabled = false;
 
   String get title => _title;
 
@@ -31,6 +39,12 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
   bool get isLoading => _isLoading;
 
   bool get isAddNewEnabled => _isAddNewEnabled;
+
+  bool get isSearchEnabled => _isSearchEnabled;
+
+  String get searchQuery => _searchQuery;
+
+  CmsSort? get sort => _sort;
 
   List<Widget> getRows(BuildContext context) {
     if (_items.isEmpty) return [];
@@ -62,6 +76,7 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
     _title = cmsConfig.getTitle(context: context);
     _subtitle = cmsConfig.getSubtitle(context: context);
     _headers = cmsConfig.getHeaders(context: context);
+    _isSearchEnabled = cmsConfig.isSearchEnabled;
     _loadData();
   }
 
@@ -79,18 +94,25 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
 
   Future<void> _loadData() async {
     if (disposed) return;
+    final requestId = ++_requestId;
     try {
       _isLoading = true;
       notifyListeners();
       _isAddNewEnabled = await cmsConfig.isAddNewEnabled();
+      final searchQuery = _searchQuery.trim();
       final pagingInfo = await cmsConfig.loadItems(
         page: _page,
         pageSize: cmsConfig.pageSize,
+        searchQuery: searchQuery.isEmpty ? null : searchQuery,
+        sort: _sort,
       );
+      // A newer request was started (e.g. search or sort changed), ignore this result
+      if (requestId != _requestId) return;
       _totalPages = pagingInfo.totalPage;
       _items.clear();
       _items.addAll(pagingInfo.items);
     } catch (error, trace) {
+      if (requestId != _requestId) return;
       cmsNavigator.showError(
         message: 'Error loading items ${T.toString()}',
         error: error,
@@ -133,38 +155,46 @@ class CmsListViewModel<T, E> extends ChangeNotifierEx {
     onLoadPage(0);
   }
 
+  /// Cycles the sort of a header: ascending -> descending -> default (no sort)
+  /// Tapping another header starts sorting ascending on that header
   void onSortTapped(CmsHeader cmsHeader) {
-    debugPrint('Sorting not yet 100% implemented');
-    // final sortCmsHeader = _sortCmsHeader;
-    // if (sortCmsHeader == null) {
-    //   _sortCmsHeader = cmsHeader;
-    //   _sortAscending = true;
-    // } else if (sortCmsHeader.id != cmsHeader.id) {
-    //   _sortCmsHeader = cmsHeader;
-    //   _sortAscending = true;
-    // } else {
-    //   if (_sortAscending == true) {
-    //     _sortAscending = false;
-    //   } else if (_sortAscending == false) {
-    //     _sortAscending = null;
-    //   } else {
-    //     _sortAscending = true;
-    //   }
-    // }
-    // notifyListeners();
+    if (!cmsHeader.isSortable) return;
+    final sort = _sort;
+    if (sort == null || sort.headerId != cmsHeader.id) {
+      _sort = CmsSort(headerId: cmsHeader.id, ascending: true);
+    } else if (sort.ascending) {
+      _sort = CmsSort(headerId: cmsHeader.id, ascending: false);
+    } else {
+      _sort = null;
+    }
+    onLoadPage(0);
   }
 
   bool? isSortAscending(CmsHeader cmsHeader) {
     if (!cmsHeader.isSortable) return null;
-    final sortHeader = _sortCmsHeader;
-    if (sortHeader == null) return null;
-    if (sortHeader.id != cmsHeader.id) return null;
-    return _sortAscending;
+    final sort = _sort;
+    if (sort == null) return null;
+    if (sort.headerId != cmsHeader.id) return null;
+    return sort.ascending;
+  }
+
+  void onSearchQueryChanged(String value) {
+    if (value == _searchQuery) return;
+    _searchQuery = value;
+    notifyListeners();
+    _searchDebounce?.cancel();
+    _searchDebounce = Timer(searchDebounceDuration, () => onLoadPage(0));
   }
 
   void onLoadPage(int value) {
     _page = value;
     _items.clear();
     _loadData();
+  }
+
+  @override
+  void dispose() {
+    _searchDebounce?.cancel();
+    super.dispose();
   }
 }

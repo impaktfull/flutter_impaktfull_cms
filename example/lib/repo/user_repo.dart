@@ -32,20 +32,36 @@ class UserRepo {
     int page = 0,
     int pageSize = 10,
     String? searchQuery,
+    CmsSort? sort,
   }) async {
     await _performNetworkDelay();
     final start = page * pageSize;
     final end = start + pageSize;
-    var allUsers = _users;
+    var allUsers = [..._users];
     if (searchQuery != null && searchQuery.isNotEmpty) {
-      allUsers = _users
+      final query = searchQuery.toLowerCase();
+      allUsers = allUsers
           .where(
-            (user) => user.name.contains(searchQuery),
+            (user) => user.name.toLowerCase().contains(query),
           )
           .toList();
     }
-    final users =
-        _users.sublist(start, end > _users.length ? _users.length : end);
+    if (sort != null) {
+      final headerId = sort.headerId;
+      final sortName = headerId is Enum ? headerId.name : headerId.toString();
+      String getValue(User user) => switch (sortName) {
+            'email' => user.email,
+            _ => user.name,
+          };
+      allUsers.sort((a, b) {
+        final result = getValue(a).compareTo(getValue(b));
+        return sort.ascending ? result : -result;
+      });
+    }
+    final users = allUsers.sublist(
+      start > allUsers.length ? allUsers.length : start,
+      end > allUsers.length ? allUsers.length : end,
+    );
     return PagingInfo(
       items: users,
       page: page,
